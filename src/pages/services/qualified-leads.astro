@@ -1,0 +1,188 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import UniversalBottom from '../../components/UniversalBottom.astro';
+import Icon from '../../components/Icon.astro';
+
+const pains = [
+  { title: 'Your agency is running awareness. You need revenue.',    body: "Most ad agencies default to broad campaigns: brand awareness, reach, impressions. Those metrics look good in a monthly report. They don't pay wages. Service businesses need leads from people who are ready to buy, not people who scrolled past a logo." },
+  { title: 'Leads that flood in and go nowhere.',                    body: "A hundred leads a month sounds great until your sales team tells you half of them are tyre-kickers, wrong locations, or the wrong service entirely. Bad lead quality doesn't just waste ad spend, it burns out the people following up on them. Volume without quality is an expense, not an asset." },
+  { title: 'No visibility past the click.',                          body: "The agency reports on impressions, clicks, and cost per lead. Nobody tells you which of those leads actually became a customer. Without that data, the ad platform keeps finding more people who click but don't buy. The budget runs in circles and nobody can explain why." },
+];
+
+const steps = [
+  { n: '01', t: 'The right channel gets mapped first.',              b: "Not every business needs Google. Not every business needs Meta. The right channel mix gets defined based on your service, your market, and what a new customer is worth. Before a dollar gets spent." },
+  { n: '02', t: 'The page where leads land gets built to convert.',  b: "An ad that drives clicks to a weak page wastes every dollar it earns. The landing page gets built for one job: turning visitors into leads. Clear offer, fast load, short form." },
+  { n: '03', t: 'Every lead gets tracked all the way to the sale.',  b: "When a lead becomes a paying customer, that outcome goes back to Google and Meta automatically. The algorithm learns what your best customers look like and starts finding more of them instead of more people who just click." },
+  { n: '04', t: 'The same budget finds better leads over time.',     b: "As more conversion data feeds back to the platforms, targeting sharpens. Lead quality improves without increasing spend. Cost per acquisition drops. That's the loop most agencies never close." },
+];
+
+const features = [
+  { icon: 'target',   name: 'Channel Strategy',          desc: "Google Search, Meta Ads, remarketing, or a combination. The right channel mix gets defined based on your service, your market, and your target cost per acquisition. Strategy first, spend second." },
+  { icon: 'browser',  name: 'Landing Page Optimisation', desc: "The page where your leads land gets optimised for conversion, not just aesthetics. Headline, offer, form, trust signals, mobile performance. Every element tested to maximise conversion." },
+  { icon: 'layers',   name: 'Lead Tracking Integration', desc: "Every lead tracked from the ad that generated it through to the sale it produced. Nothing lives in a spreadsheet. Everything flows into the CRM automatically and gets attributed to the right campaign." },
+  { icon: 'loop',     name: 'Conversion Feedback Loop',  desc: "When a lead closes into a sale, that outcome gets reported back to Google and Meta. The ad platforms use that data to find more people like your best customers. Lead quality improves over time." },
+  { icon: 'chart',    name: 'Analytics Dashboard',       desc: "A single dashboard shows the full funnel: ad spend, cost per lead, lead quality score, pipeline value, and cost per closed sale. Reporting covers what matters, not vanity metrics." },
+  { icon: 'zap',      name: 'Remarketing Campaigns',     desc: "People who visited your site or landing page but didn't convert get a second chance to see the right message. Consistently the highest-ROAS campaign type in any account." },
+  { icon: 'cog',      name: 'Monthly Optimisation',      desc: "Every month performance gets reviewed: which ads are working, which audiences are converting, which landing page variants are winning. Budget gets shifted toward what's working." },
+  { icon: 'sparkle',  name: 'Creative Guidance',         desc: "Ad creative direction provided for every campaign: what the headline needs to say, what the visual needs to show, what the offer needs to be. Creative decisions driven by data, not guesswork." },
+];
+
+const proofStats = [
+  { n: '137%',  l: 'ROAS in 90 days',            sub: "Return on ad spend achieved for an industrial services client in a high-value B2B vertical, within the first 90 days of running the full system." },
+  { n: '24%',   l: 'Lead-to-sales conversion',   sub: "The percentage of qualified leads that converted to signed contracts when pipeline tracking and conversion feedback were fully connected." },
+  { n: '-17%',  l: 'Cost per lead vs target',    sub: "Cost per lead came in 17% below the target benchmark, with lead quality simultaneously improving as conversion data fed back into the platform." },
+];
+---
+
+<BaseLayout
+  title="Qualified Lead Generation for Service Businesses | Click2Revenue"
+  description="Not just more leads, better ones. Google Ads, Meta Ads, and a conversion feedback loop that teaches the algorithm what your best customers look like."
+>
+  <script slot="schema" type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "Service",
+    "name": "Qualified Lead Generation",
+    "description": "A complete lead generation system that closes the feedback loop between sales outcomes and the ad platform.",
+    "url": "https://click2revenue.com/services/qualified-leads",
+    "provider": { "@type": "Organization", "name": "Click2Revenue", "url": "https://click2revenue.com" },
+    "areaServed": ["AU", "US"], "serviceType": "Paid Media and Lead Generation"
+  })} />
+  <script slot="schema" type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://click2revenue.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://click2revenue.com/services" },
+      { "@type": "ListItem", "position": 3, "name": "Qualified Leads", "item": "https://click2revenue.com/services/qualified-leads" }
+    ]
+  })} />
+
+  <!-- HERO -->
+  <section style="background:#FAFAF7;padding:140px 24px 80px;position:relative;overflow:hidden;">
+    <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;overflow:hidden;">
+      <div style="position:absolute;top:-180px;right:-120px;width:900px;height:900px;background:radial-gradient(circle,rgba(153,226,180,0.22) 0%,transparent 60%);border-radius:50%;filter:blur(20px);"></div>
+    </div>
+    <div style="position:relative;max-width:1100px;margin:0 auto;">
+      <div style="max-width:880px;margin:0 auto;text-align:center;">
+        <span class="label">Qualified Leads</span>
+        <h1 style="font-size:clamp(40px,6vw,84px);font-weight:800;color:#0A0A0B;margin:0 0 24px;line-height:0.98;letter-spacing:-0.045em;">
+          Most agencies count clicks.<br/>You need <span style="color:#14746F;">closed jobs.</span>
+        </h1>
+        <p style="font-size:clamp(17px,1.6vw,20px);color:#4A4A4E;line-height:1.55;margin:0 auto 36px;max-width:680px;font-weight:400;letter-spacing:-0.01em;">
+          A complete lead generation system, from ad to analytics to closed sale, that gets smarter every week and finds better customers over time.
+        </p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;" class="hero-cta-row">
+          <a href="#full-form-anchor" class="btn-primary">Get my free ad audit <Icon name="arrow-right" size={16} /></a>
+          <a href="#features" class="btn-secondary">See what's included</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section style="background:white;padding:110px 24px;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div class="reveal" style="max-width:760px;margin-bottom:56px;text-align:center;margin-inline:auto;">
+        <h2 style="font-size:clamp(32px,4.5vw,54px);color:#0A0A0B;margin:0;line-height:1.05;letter-spacing:-0.035em;">
+          The leads are coming in. <span style="color:#14746F;">The sales aren't.</span>
+        </h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;" class="pain-grid">
+        {pains.map(p => (
+          <div class="reveal" style="padding:36px 32px;background:#FAFAF7;border:1px solid #EAEAEC;border-radius:16px;">
+            <h3 style="font-weight:700;font-size:19px;color:#14746F;margin:0 0 14px;letter-spacing:-0.02em;line-height:1.3;">{p.title}</h3>
+            <p style="font-size:14.5px;color:#4A4A4E;line-height:1.7;margin:0;letter-spacing:-0.005em;">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section style="background:#F6F5F0;padding:110px 24px;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 64px;">
+        <span class="label">How it works</span>
+        <h2 style="font-size:clamp(30px,4.5vw,50px);color:#0A0A0B;margin:0;line-height:1.05;letter-spacing:-0.035em;">
+          The full cycle, from first ad<br/>to <span style="color:#14746F;">closed sale.</span>
+        </h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;" class="steps-grid-4">
+        {steps.map(s => (
+          <div class="reveal" style="padding:32px 26px;background:white;border:1px solid #EAEAEC;border-radius:16px;">
+            <p style="font-weight:700;font-size:14px;color:#14746F;margin:0 0 18px;letter-spacing:0.05em;">{s.n}</p>
+            <h3 style="font-weight:700;font-size:17px;margin:0 0 12px;color:#0A0A0B;letter-spacing:-0.02em;line-height:1.25;">{s.t}</h3>
+            <p style="font-size:13.5px;color:#4A4A4E;line-height:1.65;margin:0;letter-spacing:-0.005em;">{s.b}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" style="background:white;padding:110px 24px;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 56px;">
+        <span class="label">What's included</span>
+        <h2 style="font-size:clamp(30px,4.5vw,50px);color:#0A0A0B;margin:0;line-height:1.05;letter-spacing:-0.035em;">
+          Every part of the system.<br/><span style="color:#14746F;">Nothing left disconnected.</span>
+        </h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;" class="feat-grid-4">
+        {features.map(f => (
+          <div class="reveal" style="padding:26px 22px;background:#FAFAF7;border:1px solid #EAEAEC;border-radius:14px;">
+            <div style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:9px;background:white;border:1px solid #EAEAEC;color:#14746F;margin-bottom:14px;">
+              <Icon name={f.icon} size={18} />
+            </div>
+            <h3 style="font-weight:700;font-size:15px;margin:0 0 8px;color:#0A0A0B;letter-spacing:-0.02em;line-height:1.3;">{f.name}</h3>
+            <p style="font-size:13px;color:#4A4A4E;line-height:1.6;margin:0;letter-spacing:-0.005em;">{f.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF STRIP -->
+  <section style="background:#0A0A0B;padding:100px 24px;position:relative;overflow:hidden;">
+    <div aria-hidden="true" style="position:absolute;top:-200px;right:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(20,116,111,0.3) 0%,transparent 60%);border-radius:50%;"></div>
+    <div style="position:relative;max-width:1100px;margin:0 auto;">
+      <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 56px;">
+        <span style="display:inline-flex;align-items:center;gap:10px;font-family:'Inter',sans-serif;font-weight:600;font-size:12.5px;letter-spacing:0.12em;text-transform:uppercase;color:#99E2B4;margin-bottom:24px;padding:7px 14px;background:rgba(153,226,180,0.14);border:1px solid rgba(153,226,180,0.25);border-radius:99px;">Proof</span>
+        <h2 style="font-size:clamp(30px,4.5vw,50px);color:white;margin:0;line-height:1.05;letter-spacing:-0.035em;">
+          What the numbers look like<br/>when the full system runs.
+        </h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;" class="proof-grid">
+        {proofStats.map(s => (
+          <div class="reveal" style="padding:36px 32px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:16px;">
+            <p style="font-weight:800;font-size:clamp(44px,5.5vw,64px);color:white;margin:0;line-height:1;letter-spacing:-0.045em;">{s.n}</p>
+            <p style="font-size:15px;color:#99E2B4;margin:14px 0 12px;font-weight:600;letter-spacing:-0.005em;">{s.l}</p>
+            <p style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.6;margin:0;letter-spacing:-0.005em;">{s.sub}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <UniversalBottom
+    service="qualified_leads"
+    source="service_page"
+    guaranteeText="If your campaigns aren't live and generating tracked leads 14 days after kickoff, your first month is on us. No small print."
+    formHeadline="Ready to stop paying for leads that don't convert?"
+    formSubheadline="A free audit of your current ad account and lead quality runs within 24 hours. Our AI replies instantly. A human follows up during business hours."
+  />
+
+</BaseLayout>
+
+<style>
+  @media (max-width: 1000px) {
+    .pain-grid    { grid-template-columns: 1fr !important; }
+    .steps-grid-4 { grid-template-columns: repeat(2, 1fr) !important; }
+    .feat-grid-4  { grid-template-columns: repeat(2, 1fr) !important; }
+    .proof-grid   { grid-template-columns: 1fr !important; }
+  }
+  @media (max-width: 760px) {
+    section:first-child { padding: 120px 18px 64px !important; }
+    section { padding-left: 18px !important; padding-right: 18px !important; padding-top: 64px !important; padding-bottom: 64px !important; }
+    .steps-grid-4, .feat-grid-4 { grid-template-columns: 1fr !important; }
+    .hero-cta-row a { width: 100%; justify-content: center; }
+  }
+</style>

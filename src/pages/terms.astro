@@ -1,0 +1,213 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const sections = [
+  {
+    n: '1',
+    t: 'Services',
+    content: `Click2Revenue provides digital marketing, AI automation, and business process services, including but not limited to:
+
+• AI Sales Automation (CRM setup, AI voice and SMS bots, automated follow-up sequences)
+• AI Search Optimisation (content creation, website structure, local citations)
+• Qualified Lead Generation (Google Ads, Meta Ads, landing page optimisation, conversion tracking)
+• Website Design and Development
+• AI Business Process Automation (custom workflow automation, system integrations)
+
+The specific services, deliverables, and timelines for each engagement are set out in the proposal or service agreement provided to the Client. In the event of any conflict between these Terms and a signed service agreement, the service agreement prevails.`,
+  },
+  {
+    n: '2',
+    t: 'Engagement and payment',
+    content: `**2.1 Commencement.** An engagement begins when the Client signs a proposal or service agreement, or makes an initial payment, whichever occurs first.
+
+**2.2 Fees.** Service fees are as set out in the relevant proposal or service agreement. Fees are exclusive of applicable taxes (including GST for Australian clients).
+
+**2.3 Payment terms.** Invoices are due within 7 days of issue unless otherwise stated in the service agreement. Late payments may attract interest at the rate of 1.5% per month on the outstanding balance.
+
+**2.4 Month-to-month services.** Where a service is provided on a month-to-month basis following an initial build or setup period, either party may terminate with 30 days written notice. The initial build or setup period (typically 90 days) is non-refundable once commenced.
+
+**2.5 Currency.** Australian clients are invoiced in Australian Dollars (AUD). US clients are invoiced in United States Dollars (USD), unless otherwise agreed.`,
+  },
+  {
+    n: '3',
+    t: 'Deliverables and timelines',
+    content: `**3.1 Kickoff.** Work begins within 5 business days of receipt of the signed agreement and initial payment.
+
+**3.2 Timelines.** Estimated timelines are provided in good faith. Click2Revenue will make reasonable efforts to meet agreed timelines. Delays caused by the Client (including delayed provision of content, access, or approvals) may extend delivery timelines accordingly.
+
+**3.3 Client responsibilities.** The Client is responsible for providing accurate information, timely feedback, and access to necessary accounts and assets. Click2Revenue is not responsible for delays or underperformance resulting from failure to provide these.`,
+  },
+  {
+    n: '4',
+    t: 'The Click2Revenue guarantee',
+    content: `Where a service-specific guarantee is offered (as described on the relevant service page or in the service agreement), the following applies:
+
+• Guarantees are deliverable-based. They relate to whether specific deliverables go live within the stated timeframe, not to specific traffic, lead volume, conversion, revenue, or return on ad spend outcomes.
+• If Click2Revenue fails to meet the stated deliverable within the stated timeframe, the Client's first month of that service is provided at no charge.
+• To claim a guarantee, the Client must notify Click2Revenue in writing within 7 days of the guarantee period expiring.
+• Guarantees do not apply where delay or non-delivery is caused by the Client's failure to provide required information, access, approvals, or assets on time.
+
+**Australian clients:** Nothing in these Terms excludes, restricts, or modifies any right or remedy that cannot be excluded under the Australian Consumer Law.`,
+  },
+  {
+    n: '5',
+    t: 'Intellectual property',
+    content: `**5.1 Client content.** The Client retains ownership of all content, data, and materials provided to Click2Revenue. The Client grants Click2Revenue a non-exclusive licence to use this material for the purpose of delivering the services.
+
+**5.2 Deliverables.** Upon full payment of all fees, the Client owns the deliverables produced for them under the engagement (including website copy, ad creative, and custom automation workflows). Click2Revenue retains ownership of any underlying tools, templates, platforms, or methodologies used to produce those deliverables.
+
+**5.3 Platform accounts.** Where Click2Revenue manages third-party platform accounts (Google Ads, Meta Ads, CRM, etc.) on the Client's behalf, those accounts and their data remain the property of the Client. Upon termination, Click2Revenue will transfer access to the Client within 10 business days.`,
+  },
+  {
+    n: '6',
+    t: 'Confidentiality',
+    content: `Both parties agree to keep confidential any non-public information received from the other party in connection with the engagement. This obligation survives termination of the engagement.`,
+  },
+  {
+    n: '7',
+    t: 'Limitation of liability',
+    content: `**7.1** To the extent permitted by law, Click2Revenue's liability to the Client for any claim arising out of or in connection with the services is limited to the total fees paid by the Client in the 3 months preceding the claim.
+
+**7.2** Click2Revenue is not liable for any indirect, consequential, or special loss, including lost profits, lost revenue, or loss of business opportunity.
+
+**7.3** Click2Revenue is not responsible for the performance of third-party platforms (including Google, Meta, Go High Level, or any other platform), and does not guarantee that third-party platforms will operate without interruption, error, or change in policy.
+
+**7.4** Nothing in these Terms limits liability for fraud, death, or personal injury caused by negligence, or for any liability that cannot be excluded under applicable law.
+
+**Australian clients:** Where the Australian Consumer Law applies, Click2Revenue's liability for breach of a consumer guarantee (where one applies) is limited to, at Click2Revenue's option: re-supply of the relevant service, or payment of the cost of re-supply.`,
+  },
+  {
+    n: '8',
+    t: 'Termination',
+    content: `**8.1** Either party may terminate a month-to-month engagement with 30 days written notice.
+
+**8.2** Click2Revenue may immediately suspend or terminate services if the Client fails to pay an invoice within 21 days of the due date, breaches these Terms and fails to remedy the breach within 14 days of written notice, or continuing the engagement would require Click2Revenue to engage in unlawful conduct.
+
+**8.3** Upon termination, all outstanding fees become immediately payable. Fees for work already commenced during a notice period are payable in full.`,
+  },
+  {
+    n: '9',
+    t: 'Advertising platforms and compliance',
+    content: `**9.1** The Client warrants that any products, services, or claims to be advertised comply with applicable law, including advertising standards in Australia (regulated by Ad Standards) and the United States (regulated by the FTC).
+
+**9.2** The Client is responsible for ensuring that all advertising content, landing pages, and offers comply with the terms of service of the relevant advertising platform (Google Ads, Meta Ads, etc.). Click2Revenue will flag any identified compliance concerns but is not liable for platform policy changes, ad disapprovals, or account suspensions caused by the Client's content or products.`,
+  },
+  {
+    n: '10',
+    t: 'Governing law',
+    content: `**Australian clients:** These Terms are governed by the laws of Queensland, Australia. Disputes are subject to the exclusive jurisdiction of the courts of Queensland.
+
+**US clients:** These Terms are governed by the laws of the State of Delaware, USA. Disputes are subject to the exclusive jurisdiction of the courts of Delaware.
+
+**International clients:** In the absence of a signed service agreement specifying governing law, Australian law applies.`,
+  },
+  {
+    n: '11',
+    t: 'Changes to these terms',
+    content: `Click2Revenue may update these Terms from time to time. The current version will always be available at click2revenue.com/terms. Material changes will be communicated to active clients by email with at least 14 days notice before taking effect.`,
+  },
+  {
+    n: '12',
+    t: 'Contact',
+    content: `For any questions about these Terms:
+
+**Jane Novikova, Director — Click2Revenue LLC**
+Email: jane@click2revenue.com
+Phone (AU): +61 424 985 687
+Phone (US): +1 925 290 9985`,
+  },
+];
+---
+
+<BaseLayout
+  title="Terms and Conditions | Click2Revenue"
+  description="Click2Revenue's terms and conditions governing service delivery, payment, guarantees, and intellectual property for AU and US clients."
+  noindex={true}
+>
+
+  <!-- HERO -->
+  <section style="background:#FAFAF7;padding:140px 24px 72px;">
+    <div style="max-width:800px;margin:0 auto;">
+      <span class="label">Legal</span>
+      <h1 style="font-size:clamp(40px,6vw,64px);font-weight:800;color:#0A0A0B;margin:0 0 20px;line-height:1;letter-spacing:-0.04em;">Terms and conditions</h1>
+      <p style="font-size:16px;color:#4A4A4E;line-height:1.6;margin:0;max-width:620px;">
+        These Terms govern the relationship between Click2Revenue LLC and any person or entity who engages Click2Revenue for services. By engaging Click2Revenue, you agree to these Terms.
+      </p>
+      <p style="font-size:13px;color:#8A8A90;margin:20px 0 0;">Last reviewed: April 2026</p>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section style="background:white;padding:80px 24px 120px;">
+    <div style="max-width:800px;margin:0 auto;">
+      {sections.map(s => (
+        <article class="legal-section" id={`section-${s.n}`}>
+          <div class="legal-section-head">
+            <span class="legal-num">{s.n}</span>
+            <h2 class="legal-title">{s.t}</h2>
+          </div>
+          <div class="legal-body" set:html={
+            s.content
+              .split('\n\n')
+              .map(p => `<p>${p.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br/>')}</p>`)
+              .join('')
+          } />
+        </article>
+      ))}
+
+      <div style="margin-top:48px;padding-top:32px;border-top:1px solid #EAEAEC;text-align:center;">
+        <p style="font-size:13px;color:#8A8A90;margin:0;">
+          For questions about these Terms, email <a href="mailto:jane@click2revenue.com" style="color:#14746F;font-weight:500;">jane@click2revenue.com</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .legal-section {
+    margin-bottom: 56px;
+    scroll-margin-top: 120px;
+  }
+  .legal-section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .legal-num {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #14746F;
+    letter-spacing: 0.05em;
+    min-width: 28px;
+  }
+  .legal-title {
+    font-weight: 700;
+    font-size: 24px;
+    color: #0A0A0B;
+    margin: 0;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  .legal-body p {
+    font-size: 15.5px;
+    color: #4A4A4E;
+    line-height: 1.75;
+    margin: 0 0 16px;
+    letter-spacing: -0.005em;
+    padding-left: 44px;
+  }
+  .legal-body p:last-child { margin-bottom: 0; }
+  .legal-body strong { color: #0A0A0B; font-weight: 600; }
+
+  @media (max-width: 760px) {
+    section:first-child { padding: 120px 20px 56px !important; }
+    section:last-child { padding: 56px 20px 80px !important; }
+    .legal-body p { padding-left: 0 !important; }
+    .legal-section-head { flex-direction: column; gap: 6px; margin-bottom: 14px; }
+    .legal-title { font-size: 20px; }
+  }
+</style>

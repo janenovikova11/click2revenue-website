@@ -1,0 +1,212 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import UniversalBottom from '../../components/UniversalBottom.astro';
+import Icon from '../../components/Icon.astro';
+
+const pains = [
+  { title: "Your competitors are being recommended by AI. You're not.", body: "When a tourist asks ChatGPT \"where to hire a surfboard on the Sunshine Coast,\" or a homeowner asks Google AI \"best plumber near me,\" someone gets named. Right now, that someone probably isn't you. Not because you're not good. Because your website and content aren't structured for how AI engines find and cite businesses." },
+  { title: "Page one of Google isn't the finish line anymore.",          body: "You've spent years on Google SEO. Rankings, backlinks, meta descriptions. That still matters. It's no longer enough. A growing percentage of people get answers directly from AI without clicking a single search result. If you're not in the AI answer, you're not in the conversation." },
+  { title: "An outdated website is invisible to AI.",                    body: "AI engines read your website to understand what you do, where you do it, and whether you're credible. An old site with thin content, no local specificity, and poor structure doesn't get cited. It gets ignored. Your competitors with better-structured sites get the recommendation, even if they've been in business half as long as you." },
+];
+
+const steps = [
+  { n: '01', t: 'A full AI search audit shows the gap.',   b: "Right now, when someone asks ChatGPT or Google AI for your service in your area, something comes up. An audit shows exactly what AI knows about your business, what it says about your competitors, and where the gap is. Clear picture before anything changes." },
+  { n: '02', t: 'Locally-focused content goes live.',       b: "AI engines pull from websites, review platforms, directories, and local sources when they build answers. Service pages, location pages, and FAQs go live, written specifically for your service, your city, your suburb. AI engines get the right information to start recommending your business." },
+  { n: '03', t: 'Your website becomes readable to AI.',    b: "AI engines need to read a site fast and understand exactly what the business does and where. Your site structure and content get updated so that's clear. If the current site is too outdated to fix effectively, a new one goes live within days, built for AI search from day one." },
+  { n: '04', t: 'Your local authority signals get aligned.',b: "AI engines cross-reference your website against what the rest of the internet says about your business. Your Google Business Profile, local directory listings, and review presence get aligned into one consistent story. Consistent signals mean AI engines trust and cite your business." },
+];
+
+const features = [
+  { icon: 'search-ai',name: 'AI Search Audit',              desc: "A full audit runs before anything changes. It shows exactly what ChatGPT, Google AI, and Perplexity currently say about your business and your competitors in your local area. The gap is visible in plain terms." },
+  { icon: 'sparkle',  name: 'Localised Content Creation',    desc: "Service pages, location pages, and FAQ content go live, written specifically for how AI engines read and cite local businesses. Your service, your city, your suburb. Not a template. Not repurposed from another client." },
+  { icon: 'browser',  name: 'Website Structure Optimisation', desc: "Your site's structure, headings, and content layout get updated so AI engines can read it clearly. Technical details handled in the background. The results show up in AI search." },
+  { icon: 'bolt',     name: 'Full Website Rebuild (where needed)', desc: "If the current site is too outdated to be effective — old platform, thin content, no local relevance — a new one gets built with AI in days. Fast, right from day one, fully optimised for AI search." },
+  { icon: 'target',   name: 'Google Business Profile',       desc: "GBP is one of the primary sources AI engines pull from for local business recommendations. It gets completed, updated, and loaded with the right service and location signals." },
+  { icon: 'layers',   name: 'Local Citation Building',       desc: "Consistent business name, address, and service information across the directories, review sites, and local sources AI engines reference. Mismatched or missing listings hurt credibility. They get cleaned up." },
+  { icon: 'chart',    name: 'AI Search Monitoring',          desc: "Monthly reporting shows what AI engines say about your business: what queries are appearing, what competitors are being recommended for, what content to create next." },
+  { icon: 'loop',     name: 'Quarterly Content Updates',     desc: "AI search visibility is not set and forget. New localised content goes live each quarter: new service angles, seasonal topics, location-specific pages. Presence grows. It doesn't stagnate." },
+];
+---
+
+<BaseLayout
+  title="Show Up on ChatGPT & Google AI for Local Businesses | Click2Revenue"
+  description="When local customers ask ChatGPT or Google AI for your service, your business comes up. AI search optimisation for AU service businesses. Free audit."
+>
+  <script slot="schema" type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "Service",
+    "name": "AI Search Optimisation",
+    "description": "Optimise your website and content so ChatGPT, Google AI, and Perplexity recommend your business when local customers ask for your service.",
+    "url": "https://click2revenue.com/services/show-up-on-chatgpt",
+    "provider": { "@type": "Organization", "name": "Click2Revenue", "url": "https://click2revenue.com" },
+    "areaServed": ["AU", "US"], "serviceType": "AI Search Optimisation"
+  })} />
+  <script slot="schema" type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://click2revenue.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://click2revenue.com/services" },
+      { "@type": "ListItem", "position": 3, "name": "Show Up on ChatGPT", "item": "https://click2revenue.com/services/show-up-on-chatgpt" }
+    ]
+  })} />
+
+  <!-- HERO -->
+  <section style="background:#FAFAF7;padding:140px 24px 80px;position:relative;overflow:hidden;">
+    <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;overflow:hidden;">
+      <div style="position:absolute;top:-180px;right:-120px;width:900px;height:900px;background:radial-gradient(circle,rgba(153,226,180,0.22) 0%,transparent 60%);border-radius:50%;filter:blur(20px);"></div>
+    </div>
+    <div style="position:relative;max-width:1100px;margin:0 auto;">
+      <div style="max-width:900px;margin:0 auto;text-align:center;">
+        <span class="label">Show Up on ChatGPT</span>
+        <h1 style="font-size:clamp(40px,6vw,80px);font-weight:800;color:#0A0A0B;margin:0 0 24px;line-height:0.98;letter-spacing:-0.045em;">
+          When your next client asks <span style="color:#14746F;">ChatGPT</span> who to call, your name comes up.
+        </h1>
+        <p style="font-size:clamp(17px,1.6vw,20px);color:#4A4A4E;line-height:1.55;margin:0 auto 36px;max-width:680px;font-weight:400;letter-spacing:-0.01em;">
+          Your website and content get optimised so ChatGPT, Google AI, and Perplexity recommend your business when local customers ask for your service.
+        </p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;" class="hero-cta-row">
+          <a href="#full-form-anchor" class="btn-primary">Find out if you're visible <Icon name="arrow-right" size={16} /></a>
+          <a href="#features" class="btn-secondary">See what's included</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section style="background:white;padding:110px 24px;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div class="reveal" style="max-width:760px;margin-bottom:56px;text-align:center;margin-inline:auto;">
+        <h2 style="font-size:clamp(32px,4.5vw,54px);color:#0A0A0B;margin:0;line-height:1.05;letter-spacing:-0.035em;">
+          Your customers have <span style="color:#14746F;">moved on.</span> Most businesses haven't.
+        </h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;" class="pain-grid">
+        {pains.map(p => (
+          <div class="reveal" style="padding:36px 32px;background:#FAFAF7;border:1px solid #EAEAEC;border-radius:16px;">
+            <h3 style="font-weight:700;font-size:19px;color:#14746F;margin:0 0 14px;letter-spacing:-0.02em;line-height:1.3;">{p.title}</h3>
+            <p style="font-size:14.5px;color:#4A4A4E;line-height:1.7;margin:0;letter-spacing:-0.005em;">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section style="background:#F6F5F0;padding:110px 24px;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 64px;">
+        <span class="label">How it works</span>
+        <h2 style="font-size:clamp(30px,4.5vw,50px);color:#0A0A0B;margin:0;line-height:1.05;letter-spacing:-0.035em;">
+          Four things that get your business into the <span style="color:#14746F;">AI answer.</span>
+        </h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;" class="steps-grid-4">
+        {steps.map(s => (
+          <div class="reveal" style="padding:32px 26px;background:white;border:1px solid #EAEAEC;border-radius:16px;">
+            <p style="font-weight:700;font-size:14px;color:#14746F;margin:0 0 18px;letter-spacing:0.05em;">{s.n}</p>
+            <h3 style="font-weight:700;font-size:17px;margin:0 0 12px;color:#0A0A0B;letter-spacing:-0.02em;line-height:1.25;">{s.t}</h3>
+            <p style="font-size:13.5px;color:#4A4A4E;line-height:1.65;margin:0;letter-spacing:-0.005em;">{s.b}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" style="background:white;padding:110px 24px;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 56px;">
+        <span class="label">What's included</span>
+        <h2 style="font-size:clamp(30px,4.5vw,50px);color:#0A0A0B;margin:0;line-height:1.05;letter-spacing:-0.035em;">
+          Everything it takes to become<br/>the business <span style="color:#14746F;">AI recommends.</span>
+        </h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;" class="feat-grid-4">
+        {features.map(f => (
+          <div class="reveal" style="padding:26px 22px;background:#FAFAF7;border:1px solid #EAEAEC;border-radius:14px;">
+            <div style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:9px;background:white;border:1px solid #EAEAEC;color:#14746F;margin-bottom:14px;">
+              <Icon name={f.icon} size={18} />
+            </div>
+            <h3 style="font-weight:700;font-size:15px;margin:0 0 8px;color:#0A0A0B;letter-spacing:-0.02em;line-height:1.3;">{f.name}</h3>
+            <p style="font-size:13px;color:#4A4A4E;line-height:1.6;margin:0;letter-spacing:-0.005em;">{f.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE STUDY — Craig Davis with Fireshot -->
+  <section style="background:#F6F5F0;padding:110px 24px;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div class="reveal" style="background:white;border:1px solid #EAEAEC;border-radius:22px;padding:56px;">
+        <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:56px;align-items:center;" class="cs-grid">
+          <div>
+            <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
+              <div style="width:60px;height:60px;border-radius:50%;overflow:hidden;flex-shrink:0;">
+                <img src="/craig-davies.jpg" alt="Craig Davis" style="width:100%;height:100%;object-fit:cover;"/>
+              </div>
+              <div>
+                <p style="font-size:14px;font-weight:600;color:#0A0A0B;margin:0;letter-spacing:-0.01em;">Craig Davis</p>
+                <p style="font-size:12.5px;color:#8A8A90;margin:2px 0 0;">Owner, Surf Hire Noosa</p>
+              </div>
+            </div>
+            <!-- Real website screenshot -->
+            <div style="border-radius:14px;overflow:hidden;border:1px solid #EAEAEC;box-shadow:0 16px 40px rgba(10,10,11,0.1);">
+              <img src="/craig-website.jpg" alt="Surf Hire Noosa website screenshot" style="width:100%;height:auto;display:block;"/>
+            </div>
+            <p style="margin:12px 0 0;font-size:11.5px;color:#8A8A90;text-align:center;font-style:italic;">surfhirenoosa.com.au &mdash; built in 2 weeks.</p>
+          </div>
+          <div>
+            <span style="display:inline-block;padding:5px 12px;background:#FAFAF7;border:1px solid #EAEAEC;border-radius:99px;color:#14746F;font-size:11px;letter-spacing:0.15em;font-weight:700;text-transform:uppercase;margin-bottom:18px;">Real result</span>
+            <h2 style="font-size:clamp(26px,3.2vw,36px);color:#0A0A0B;margin:0 0 20px;line-height:1.1;letter-spacing:-0.025em;">
+              From no website to first on ChatGPT. <span style="color:#14746F;">In weeks.</span>
+            </h2>
+            <p style="font-size:15.5px;color:#4A4A4E;line-height:1.7;margin:0 0 20px;letter-spacing:-0.005em;">
+              Craig runs Surf Hire Noosa on the Sunshine Coast. No website. Customers found him through walk-in traffic and Google My Business. If someone asked ChatGPT "where to hire a surfboard on the Sunshine Coast," his business didn't exist in the answer.
+            </p>
+            <p style="font-size:15.5px;color:#4A4A4E;line-height:1.7;margin:0 0 24px;letter-spacing:-0.005em;">
+              A clean, fast website went live in two weeks, structured from day one for AI search. Localised service content went live alongside it: surf hire in Noosa, board hire for beginners, Sunshine Coast surf lessons. His Google Business Profile got optimised. Local citations got built across the directories and review platforms AI engines reference. Within weeks, Craig's business started appearing in AI search results on ChatGPT, Google AI, and Perplexity.
+            </p>
+            <blockquote style="padding:18px 24px;background:#FAFAF7;border-left:3px solid #14746F;border-radius:10px;margin:0 0 24px;font-style:italic;font-size:16px;color:#0A0A0B;line-height:1.6;letter-spacing:-0.005em;">
+              "Two weeks. That's all it took. I went from chasing customers to having them book themselves."
+              <span style="display:block;margin-top:10px;font-style:normal;font-size:13px;color:#8A8A90;">Craig Davis, Owner, Surf Hire Noosa</span>
+            </blockquote>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;">
+              {[
+                'Zero online presence → first on AI search',
+                'Fully automated online bookings',
+                'Booking volume up, no paid ads',
+              ].map(r => (
+                <span style="padding:7px 14px;background:#FAFAF7;border:1px solid #EAEAEC;border-radius:99px;color:#14746F;font-size:12.5px;font-family:'Inter',sans-serif;font-weight:600;">{r}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <UniversalBottom
+    service="ai_search_optimisation"
+    source="service_page"
+    guaranteeText="If your AI Search Optimisation isn't underway and showing measurable movement within 30 days of kickoff, your first month is on us. No small print."
+    formHeadline="Find out if your business shows up when your customers ask AI."
+    formSubheadline="A free AI search audit runs within 24 hours. See exactly what ChatGPT, Google AI, and Perplexity say about you right now."
+  />
+
+</BaseLayout>
+
+<style>
+  @media (max-width: 1000px) {
+    .pain-grid    { grid-template-columns: 1fr !important; }
+    .steps-grid-4 { grid-template-columns: repeat(2, 1fr) !important; }
+    .feat-grid-4  { grid-template-columns: repeat(2, 1fr) !important; }
+    .cs-grid      { grid-template-columns: 1fr !important; gap: 36px !important; }
+  }
+  @media (max-width: 760px) {
+    section:first-child { padding: 120px 18px 64px !important; }
+    section { padding-left: 18px !important; padding-right: 18px !important; padding-top: 64px !important; padding-bottom: 64px !important; }
+    .steps-grid-4, .feat-grid-4 { grid-template-columns: 1fr !important; }
+    .hero-cta-row a { width: 100%; justify-content: center; }
+    .cs-grid > div:first-child { max-width: 240px; margin: 0 auto; }
+  }
+</style>

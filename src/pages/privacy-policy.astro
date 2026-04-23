@@ -1,0 +1,203 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const sections = [
+  {
+    n: '1',
+    t: 'Who we are',
+    content: `Click2Revenue LLC is a digital marketing and AI automation agency operating in Australia and the United States.
+
+**Australia enquiries:** Sunshine Coast, Queensland, Australia · jane@click2revenue.com · +61 424 985 687
+
+**United States enquiries:** 16192 Coastal Highway, Lewes, Delaware 19958, USA · jane@click2revenue.com · +1 925 290 9985
+
+The person responsible for privacy compliance is Jane Novikova, Director.`,
+  },
+  {
+    n: '2',
+    t: 'What personal information we collect',
+    content: `We collect only the personal information necessary to provide our services and respond to enquiries.
+
+**Information you give us directly:** name, email address, phone number, business name and type (where provided), messages submitted through enquiry forms, information shared during strategy calls or onboarding.
+
+**Information collected automatically:** IP address and approximate location, browser type and device information, pages visited and time spent, referral source, form submission data including hidden attribution fields.
+
+We collect this information through our website forms, cookies, analytics tools (Google Analytics), and the Go High Level CRM platform.`,
+  },
+  {
+    n: '3',
+    t: 'How we use your personal information',
+    content: `Your personal information is used to respond to enquiries and book strategy calls, deliver the services you have engaged us for, send service updates, run automated follow-up sequences through our CRM (with your consent or as part of a service agreement), analyse website performance, comply with legal obligations, and send marketing communications where you have opted in or where permitted by law.
+
+We do not use your personal information for any purpose not described in this policy without notifying you first.`,
+  },
+  {
+    n: '4',
+    t: 'Who we share your information with',
+    content: `Click2Revenue does not sell your personal information to third parties.
+
+We may share your information with trusted third-party service providers who help us operate our business:
+
+• **Go High Level:** Our CRM platform, used to manage leads and automate follow-up sequences.
+• **Google:** Google Analytics and Google Ads conversion tracking.
+• **Meta:** Facebook and Instagram conversion tracking for ad campaigns.
+• **Email and SMS delivery providers:** For automated communication sequences.
+
+All third parties are required to handle your personal information in accordance with applicable privacy laws and their own privacy policies.
+
+We may also disclose your information where required to do so by law, court order, or regulatory authority.`,
+  },
+  {
+    n: '5',
+    t: 'Cookies and tracking technologies',
+    content: `Our website uses cookies and similar technologies to remember your preferences, understand how visitors use our website (analytics), and track conversions from advertising campaigns.
+
+**Essential cookies** are required for the website to function and cannot be disabled. **Analytics cookies** are used to understand visitor behaviour and can be disabled via your browser. **Advertising cookies** are used to track ad conversions and can be disabled via your browser.
+
+You can manage cookie preferences through your browser settings. Disabling certain cookies may affect website functionality.`,
+  },
+  {
+    n: '6',
+    t: 'Data retention',
+    content: `We retain your personal information for as long as necessary to provide the services you have engaged us for, maintain records required by law or for legitimate business purposes, and respond to disputes or complaints.
+
+When information is no longer needed, it is securely deleted or de-identified.`,
+  },
+  {
+    n: '7',
+    t: 'Your rights',
+    content: `**Australian users (Privacy Act 1988):** You have the right to access, correct, and complain about the personal information we hold. Contact us at jane@click2revenue.com. We will respond within 30 days. If unsatisfied, you may lodge a complaint with the Office of the Australian Information Commissioner (OAIC) at www.oaic.gov.au.
+
+**California users (CCPA):** If you are a California resident, you have the right to know what personal information we collect, request deletion (subject to certain exceptions), opt out of the sale of your personal information (we do not sell personal information), and non-discrimination for exercising your privacy rights. Contact us at jane@click2revenue.com. We will respond within 45 days.
+
+**All users:** You may request to access, correct, withdraw consent for marketing communications, or request deletion of your personal information where no legal obligation to retain it exists.`,
+  },
+  {
+    n: '8',
+    t: 'International data transfers',
+    content: `Click2Revenue operates in Australia and the United States. Your personal information may be stored or processed in either country, depending on where our service providers' servers are located.
+
+We take reasonable steps to ensure that any cross-border transfer of personal information is handled in accordance with applicable privacy laws and that equivalent protections apply.`,
+  },
+  {
+    n: '9',
+    t: 'Security',
+    content: `We take reasonable steps to protect your personal information from misuse, interference, loss, unauthorised access, modification, or disclosure. These measures include access controls, encrypted data storage, and secure communication protocols.
+
+No method of internet transmission or electronic storage is 100% secure. While we take our obligations seriously, we cannot guarantee absolute security.`,
+  },
+  {
+    n: '10',
+    t: 'Third-party websites',
+    content: `Our website may contain links to third-party websites. This Privacy Policy applies only to Click2Revenue's website and services. We are not responsible for the privacy practices of other websites and recommend reviewing their privacy policies before submitting personal information.`,
+  },
+  {
+    n: '11',
+    t: 'Changes to this policy',
+    content: `This Privacy Policy may be updated from time to time to reflect changes in our practices, legal obligations, or services. The current version will always be available at click2revenue.com/privacy-policy. Material changes will be communicated by updating the "Last reviewed" date at the top of this page.`,
+  },
+  {
+    n: '12',
+    t: 'Contact us',
+    content: `For any privacy-related questions, requests, or complaints:
+
+**Jane Novikova, Director**
+Email: jane@click2revenue.com
+Phone (AU): +61 424 985 687
+Phone (US): +1 925 290 9985`,
+  },
+];
+---
+
+<BaseLayout
+  title="Privacy Policy | Click2Revenue"
+  description="Click2Revenue's privacy policy. How we collect, use, and protect your personal information under Australian and US privacy law."
+  noindex={true}
+>
+
+  <!-- HERO -->
+  <section style="background:#FAFAF7;padding:140px 24px 72px;">
+    <div style="max-width:800px;margin:0 auto;">
+      <span class="label">Legal</span>
+      <h1 style="font-size:clamp(40px,6vw,64px);font-weight:800;color:#0A0A0B;margin:0 0 20px;line-height:1;letter-spacing:-0.04em;">Privacy policy</h1>
+      <p style="font-size:16px;color:#4A4A4E;line-height:1.6;margin:0;max-width:620px;">
+        Click2Revenue LLC is committed to protecting the privacy of our clients, website visitors, and prospective clients. This policy explains what we collect, how we use it, and how you can exercise your rights under Australian and US privacy law.
+      </p>
+      <p style="font-size:13px;color:#8A8A90;margin:20px 0 0;">Last reviewed: April 2026</p>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section style="background:white;padding:80px 24px 120px;">
+    <div style="max-width:800px;margin:0 auto;">
+      {sections.map(s => (
+        <article class="legal-section" id={`section-${s.n}`}>
+          <div class="legal-section-head">
+            <span class="legal-num">{s.n}</span>
+            <h2 class="legal-title">{s.t}</h2>
+          </div>
+          <div class="legal-body" set:html={
+            s.content
+              .split('\n\n')
+              .map(p => `<p>${p.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br/>')}</p>`)
+              .join('')
+          } />
+        </article>
+      ))}
+
+      <div style="margin-top:48px;padding-top:32px;border-top:1px solid #EAEAEC;text-align:center;">
+        <p style="font-size:13px;color:#8A8A90;margin:0;">
+          For questions about this policy, email <a href="mailto:jane@click2revenue.com" style="color:#14746F;font-weight:500;">jane@click2revenue.com</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .legal-section {
+    margin-bottom: 56px;
+    scroll-margin-top: 120px;
+  }
+  .legal-section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .legal-num {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #14746F;
+    letter-spacing: 0.05em;
+    min-width: 28px;
+  }
+  .legal-title {
+    font-weight: 700;
+    font-size: 24px;
+    color: #0A0A0B;
+    margin: 0;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  .legal-body p {
+    font-size: 15.5px;
+    color: #4A4A4E;
+    line-height: 1.75;
+    margin: 0 0 16px;
+    letter-spacing: -0.005em;
+    padding-left: 44px;
+  }
+  .legal-body p:last-child { margin-bottom: 0; }
+  .legal-body strong { color: #0A0A0B; font-weight: 600; }
+
+  @media (max-width: 760px) {
+    section:first-child { padding: 120px 20px 56px !important; }
+    section:last-child { padding: 56px 20px 80px !important; }
+    .legal-body p { padding-left: 0 !important; }
+    .legal-section-head { flex-direction: column; gap: 6px; margin-bottom: 14px; }
+    .legal-title { font-size: 20px; }
+  }
+</style>

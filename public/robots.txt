@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /thank-you
+Disallow: /privacy-policy
+Disallow: /terms
+
+Sitemap: https://click2revenue.com/sitemap.xml

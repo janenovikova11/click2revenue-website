@@ -1,0 +1,649 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import UniversalBottom from '../components/UniversalBottom.astro';
+import Icon from '../components/Icon.astro';
+
+export interface SubIndustry { icon: string; label: string; }
+export interface PainCard { title: string; body: string; }
+export interface StackItem { icon: string; title: string; body: string; }
+export interface Testimonial { quote: string; author: string; title: string; }
+
+export interface Props {
+  // Meta
+  pageTitle: string;
+  pageDescription: string;
+
+  // Hero
+  slug: string;
+  image: string;
+  tag: string;                      // "Home Services"
+  heroHeadline: string;             // plain main
+  heroAccent: string;               // accent second line
+  heroSub: string;
+  subIndustries: SubIndustry[];
+
+  // Pain
+  painH2Main: string;
+  painH2Accent: string;
+  pains: PainCard[];                // 4 pains
+  empathyLine: string;
+
+  // Meet character
+  characterName: string;
+  characterIntro: string;
+  beforeStats: string[];
+  afterLabel?: string;              // default "Ninety days later"
+  afterStats: string[];
+  stack: StackItem[];
+  closingLine: string;
+
+  // Optional testimonial
+  testimonial?: Testimonial;
+
+  // Form
+  formHeadline: string;
+  formSubheadline?: string;
+  guaranteeText?: string;
+}
+
+const {
+  pageTitle, pageDescription,
+  slug, image, tag, heroHeadline, heroAccent, heroSub, subIndustries,
+  painH2Main, painH2Accent, pains, empathyLine,
+  characterName, characterIntro, beforeStats, afterLabel = 'Ninety days later', afterStats, stack, closingLine,
+  testimonial,
+  formHeadline, formSubheadline, guaranteeText,
+} = Astro.props;
+
+// Auto-generate Service schema + Breadcrumb schema for the industry page
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": `${tag} — AI Marketing & Sales Automation`,
+  "description": pageDescription,
+  "url": Astro.url.href,
+  "provider": { "@type": "Organization", "name": "Click2Revenue", "url": "https://click2revenue.com" },
+  "areaServed": ["AU", "US"],
+  "serviceType": `Marketing for ${tag}`,
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home",       "item": "https://click2revenue.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Industries", "item": "https://click2revenue.com/industries" },
+    { "@type": "ListItem", "position": 3, "name": tag,          "item": Astro.url.href },
+  ],
+};
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <script slot="schema" type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script slot="schema" type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <!-- ═══ HERO ═══ -->
+  <section class="h-hero">
+    <div class="h-hero-inner">
+      <span class="h-tag">{tag}</span>
+      <h1 class="h-title">
+        {heroHeadline}<br/>
+        <span class="h-accent">{heroAccent}</span>
+      </h1>
+      <p class="h-sub">{heroSub}</p>
+      <div class="h-cta">
+        <a href="#full-form-anchor" class="btn-primary">
+          Book my free audit <Icon name="arrow-right" size={16} />
+        </a>
+        <a href="#pain" class="btn-secondary">See the system</a>
+      </div>
+
+      <div class="h-chips">
+        {subIndustries.map(si => (
+          <div class="h-chip">
+            <div class="h-chip-icon"><Icon name={si.icon} size={18} /></div>
+            <span class="h-chip-label">{si.label}</span>
+          </div>
+        ))}
+      </div>
+
+      <div class="h-hero-photo-wrap">
+        <div class="h-hero-photo" style={`background-image:url(${image});`}></div>
+      </div>
+
+      <p class="h-trust">
+        <strong>110+</strong> service businesses scaled
+        <span class="h-sep">·</span>
+        <strong>$70M+</strong> tracked client revenue
+        <span class="h-sep">·</span>
+        Google &amp; Meta certified partner
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══ PAIN ═══ -->
+  <section id="pain" class="h-pain">
+    <div class="h-pain-inner">
+      <p class="section-kicker">What's bleeding revenue</p>
+      <h2 class="h-pain-h2">
+        {painH2Main} <span class="h-accent">{painH2Accent}</span>
+      </h2>
+
+      <div class="h-pain-list">
+        {pains.map((p, i) => (
+          <article class="h-pain-item">
+            <span class="h-pain-num">0{i+1}</span>
+            <div>
+              <h3 class="h-pain-title">{p.title}</h3>
+              <p class="h-pain-text">{p.body}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <blockquote class="h-empathy">{empathyLine}</blockquote>
+
+      <div class="h-pain-cta">
+        <a href="#full-form-anchor" class="btn-primary">Fix this for my business <Icon name="arrow-right" size={16} /></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ MEET CHARACTER ═══ -->
+  <section class="h-meet">
+    <div class="h-meet-inner">
+      <div class="h-meet-intro">
+        <p class="section-kicker">The work, for real</p>
+        <h2 class="h-meet-h2">Meet <span class="h-accent">{characterName}.</span></h2>
+        <p class="h-meet-lead">{characterIntro}</p>
+      </div>
+
+      <div class="h-ba">
+        <div class="h-ba-col">
+          <span class="h-ba-eyebrow h-ba-eyebrow-before">Before</span>
+          <ul class="h-ba-list">
+            {beforeStats.map(b => <li>{b}</li>)}
+          </ul>
+        </div>
+        <div class="h-ba-line"></div>
+        <div class="h-ba-col">
+          <span class="h-ba-eyebrow h-ba-eyebrow-after">{afterLabel}</span>
+          <ul class="h-ba-list h-ba-list-after">
+            {afterStats.map(a => (
+              <li>
+                <span class="h-ba-check"><Icon name="check" size={14} stroke="#14746F" /></span>
+                <span>{a}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div class="h-stack">
+        <p class="section-kicker" style="margin-bottom:24px;">Here's what we built</p>
+        <div class="h-stack-grid">
+          {stack.map(s => (
+            <div class="h-stack-item">
+              <div class="h-stack-icon"><Icon name={s.icon} size={22} /></div>
+              <div>
+                <h4 class="h-stack-title">{s.title}</h4>
+                <p class="h-stack-text">{s.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <p class="h-meet-close">{closingLine}</p>
+
+      <div class="h-meet-cta">
+        <a href="#full-form-anchor" class="btn-primary">Build this for my business <Icon name="arrow-right" size={16} /></a>
+      </div>
+    </div>
+  </section>
+
+  {testimonial && (
+    <section class="h-testimonial">
+      <div class="h-testimonial-inner">
+        <div class="h-testi-card">
+          <svg class="h-testi-quote-mark" width="70" height="56" viewBox="0 0 80 64" fill="#99E2B4" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 64V40C0 17.9 13.3 4 32 0v16c-8.3 2-14 7.5-14 16h14v32H0zm48 0V40c0-22.1 13.3-36 32-40v16c-8.3 2-14 7.5-14 16h14v32H48z"/>
+          </svg>
+          <p class="h-testi-quote">"{testimonial.quote}"</p>
+          <p class="h-testi-author">
+            <strong>{testimonial.author}</strong><br/>
+            <span>{testimonial.title}</span>
+          </p>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <UniversalBottom
+    service={slug}
+    source="industry_page"
+    formHeadline={formHeadline}
+    formSubheadline={formSubheadline}
+    guaranteeText={guaranteeText}
+  />
+
+</BaseLayout>
+
+<style>
+  /* ═══ Shared labels ═══ */
+  .section-kicker {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: #14746F;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin: 0 0 20px;
+  }
+  .h-accent { color: #14746F; }
+
+  /* ═══ HERO ═══ */
+  .h-hero {
+    background: #FAFAF7;
+    padding: 140px 24px 100px;
+    position: relative;
+    overflow: hidden;
+  }
+  .h-hero::before {
+    content: "";
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(153,226,180,0.20) 0%, transparent 60%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .h-hero::after {
+    content: "";
+    position: absolute;
+    top: 400px;
+    left: -150px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(20,116,111,0.08) 0%, transparent 55%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .h-hero-inner {
+    position: relative;
+    max-width: 1040px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .h-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #14746F;
+    padding: 8px 16px;
+    background: rgba(20,116,111,0.08);
+    border: 1px solid rgba(20,116,111,0.2);
+    border-radius: 99px;
+    margin-bottom: 36px;
+  }
+  .h-title {
+    font-size: clamp(40px, 5.8vw, 76px);
+    font-weight: 800;
+    color: #0A0A0B;
+    line-height: 1.04;
+    letter-spacing: -0.045em;
+    margin: 0 auto 28px;
+    max-width: 920px;
+  }
+  .h-sub {
+    font-size: clamp(17px, 1.4vw, 20px);
+    color: #4A4A4E;
+    line-height: 1.55;
+    margin: 0 auto 40px;
+    max-width: 660px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  .h-cta {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+  .h-chips {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 80px;
+  }
+  .h-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: white;
+    border: 1px solid #EAEAEC;
+    border-radius: 99px;
+    transition: all 0.2s;
+  }
+  .h-chip:hover {
+    border-color: #14746F;
+    background: rgba(20,116,111,0.04);
+  }
+  .h-chip-icon { color: #14746F; display: flex; align-items: center; }
+  .h-chip-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #0A0A0B;
+    letter-spacing: -0.005em;
+  }
+  .h-hero-photo-wrap {
+    position: relative;
+    margin: 0 auto 56px;
+    max-width: 1100px;
+    aspect-ratio: 16 / 7;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 40px 80px rgba(10,10,11,0.15), 0 12px 24px rgba(10,10,11,0.08);
+  }
+  .h-hero-photo {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center 40%;
+    filter: saturate(0.9) contrast(1.02);
+  }
+  .h-hero-photo-wrap::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10,10,11,0.08) 0%, transparent 30%, transparent 70%, rgba(10,10,11,0.25) 100%);
+    pointer-events: none;
+  }
+  .h-trust {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #8A8A90;
+    margin: 0;
+    letter-spacing: -0.005em;
+  }
+  .h-trust strong { color: #0A0A0B; font-weight: 600; }
+  .h-sep { color: #D0D0D4; margin: 0 8px; }
+
+  /* ═══ PAIN ═══ */
+  .h-pain { background: white; padding: 140px 24px; }
+  .h-pain-inner { max-width: 900px; margin: 0 auto; }
+  .h-pain-h2 {
+    font-size: clamp(32px, 4.8vw, 56px);
+    color: #0A0A0B;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    margin: 0 0 72px;
+    max-width: 760px;
+  }
+  .h-pain-list { display: flex; flex-direction: column; }
+  .h-pain-item {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: 32px;
+    padding: 40px 0;
+    border-top: 1px solid #EAEAEC;
+    align-items: flex-start;
+  }
+  .h-pain-item:last-child { border-bottom: 1px solid #EAEAEC; }
+  .h-pain-num {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 44px;
+    color: transparent;
+    -webkit-text-stroke: 1.5px #14746F;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    padding-top: 4px;
+  }
+  .h-pain-title {
+    font-weight: 700;
+    font-size: 24px;
+    color: #0A0A0B;
+    margin: 0 0 12px;
+    letter-spacing: -0.025em;
+    line-height: 1.25;
+  }
+  .h-pain-text {
+    font-size: 16px;
+    color: #4A4A4E;
+    line-height: 1.75;
+    margin: 0;
+    letter-spacing: -0.005em;
+    max-width: 620px;
+  }
+  .h-empathy {
+    margin: 72px 0 0;
+    padding: 0 0 0 32px;
+    border-left: 3px solid #99E2B4;
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+    font-size: 22px;
+    color: #0A0A0B;
+    line-height: 1.55;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    max-width: 720px;
+  }
+  .h-pain-cta { margin-top: 64px; text-align: center; }
+
+  /* ═══ MEET CHARACTER ═══ */
+  .h-meet { background: #F6F5F0; padding: 140px 24px; }
+  .h-meet-inner { max-width: 960px; margin: 0 auto; }
+  .h-meet-intro { text-align: center; margin-bottom: 72px; }
+  .h-meet-h2 {
+    font-size: clamp(36px, 5.2vw, 64px);
+    color: #0A0A0B;
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    margin: 0 0 28px;
+  }
+  .h-meet-lead {
+    font-size: 19px;
+    color: #4A4A4E;
+    line-height: 1.7;
+    margin: 0 auto;
+    max-width: 700px;
+    font-weight: 400;
+    letter-spacing: -0.005em;
+  }
+  .h-ba {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    gap: 0;
+    padding: 56px 0;
+    border-top: 1px solid #EAEAEC;
+    border-bottom: 1px solid #EAEAEC;
+    margin-bottom: 72px;
+  }
+  .h-ba-col { padding: 0 32px; }
+  .h-ba-line { background: #EAEAEC; }
+  .h-ba-eyebrow {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .h-ba-eyebrow-before { color: #8A8A90; }
+  .h-ba-eyebrow-after  { color: #14746F; }
+  .h-ba-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .h-ba-list li {
+    font-size: 15px;
+    color: #4A4A4E;
+    line-height: 1.65;
+    letter-spacing: -0.005em;
+    padding-left: 20px;
+    position: relative;
+  }
+  .h-ba-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #C8C8CC;
+  }
+  .h-ba-list-after li {
+    color: #0A0A0B;
+    font-weight: 500;
+    padding-left: 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .h-ba-list-after li::before { display: none; }
+  .h-ba-check { flex-shrink: 0; margin-top: 4px; display: inline-flex; }
+  .h-ba-list-after li > span:last-child { flex: 1; }
+  .h-stack { margin-bottom: 72px; }
+  .h-stack-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 48px;
+  }
+  .h-stack-item {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .h-stack-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 11px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #14746F;
+    border: 1px solid #EAEAEC;
+  }
+  .h-stack-title {
+    font-weight: 700;
+    font-size: 17px;
+    color: #0A0A0B;
+    margin: 0 0 8px;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+  }
+  .h-stack-text {
+    font-size: 14.5px;
+    color: #4A4A4E;
+    line-height: 1.7;
+    margin: 0;
+    letter-spacing: -0.005em;
+  }
+  .h-meet-close {
+    font-size: 17px;
+    color: #4A4A4E;
+    line-height: 1.7;
+    margin: 0 auto;
+    max-width: 760px;
+    text-align: center;
+    font-style: italic;
+    letter-spacing: -0.005em;
+    border-top: 1px solid #EAEAEC;
+    padding-top: 48px;
+  }
+  .h-meet-cta { margin-top: 48px; text-align: center; }
+
+  /* ═══ TESTIMONIAL ═══ */
+  .h-testimonial { background: white; padding: 100px 24px; }
+  .h-testimonial-inner { max-width: 900px; margin: 0 auto; }
+  .h-testi-card {
+    background: #0A0A0B;
+    border-radius: 22px;
+    padding: 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  .h-testi-card::before {
+    content: "";
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(20,116,111,0.35) 0%, transparent 60%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .h-testi-quote-mark {
+    position: absolute;
+    top: 40px;
+    right: 56px;
+    opacity: 0.15;
+  }
+  .h-testi-quote {
+    position: relative;
+    font-weight: 500;
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.5;
+    color: white;
+    margin: 0 0 28px;
+    letter-spacing: -0.015em;
+    max-width: 720px;
+  }
+  .h-testi-author {
+    position: relative;
+    margin: 0;
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.4;
+  }
+  .h-testi-author strong { color: white; font-weight: 600; }
+  .h-testi-author span { color: #99E2B4; }
+
+  /* ═══ Responsive ═══ */
+  @media (max-width: 900px) {
+    .h-ba { grid-template-columns: 1fr; padding: 32px 0; }
+    .h-ba-col { padding: 24px 0; }
+    .h-ba-line { width: 100%; height: 1px; }
+    .h-stack-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+  @media (max-width: 700px) {
+    .h-hero { padding: 110px 20px 72px !important; }
+    .h-pain, .h-meet, .h-testimonial { padding: 80px 20px !important; }
+    .h-title { font-size: 36px !important; }
+    .h-chips { gap: 8px; margin-bottom: 56px; }
+    .h-chip { padding: 8px 12px; }
+    .h-chip-label { font-size: 12px; }
+    .h-hero-photo-wrap { aspect-ratio: 4/3; border-radius: 16px; }
+    .h-pain-item { grid-template-columns: 48px 1fr; gap: 18px; padding: 28px 0; }
+    .h-pain-num { font-size: 30px; }
+    .h-pain-title { font-size: 20px; }
+    .h-pain-text { font-size: 15px; }
+    .h-empathy { font-size: 18px; padding-left: 20px; }
+    .h-meet-lead { font-size: 16px; }
+    .h-ba-col { padding: 16px 0; }
+    .h-stack-grid { gap: 24px; }
+    .h-testi-card { padding: 36px 28px; }
+  }
+</style>

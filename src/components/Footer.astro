@@ -1,0 +1,86 @@
+---
+---
+<footer style="background:#0A0A0B;color:white;">
+  <div style="max-width:1240px;margin:0 auto;padding:72px 32px 40px;">
+
+    <div style="display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:56px;margin-bottom:56px;" class="footer-grid">
+
+      <!-- Brand column -->
+      <div>
+        <img src="/logo-white.png" alt="Click2Revenue" style="height:28px;width:auto;margin-bottom:18px;"/>
+        <p style="color:rgba(255,255,255,0.55);font-size:13.5px;line-height:1.7;max-width:280px;font-weight:400;">
+          Making revenue predictable for service businesses across AU and USA since 2017.
+        </p>
+        <div style="display:flex;gap:12px;margin-top:24px;">
+          <a href="https://linkedin.com/company/click2revenue" target="_blank" rel="noopener" aria-label="LinkedIn"
+             style="width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,0.06);display:inline-flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.7);transition:all 0.2s;"
+             onmouseover="this.style.background='#14746F';this.style.color='white';"
+             onmouseout="this.style.background='rgba(255,255,255,0.06)';this.style.color='rgba(255,255,255,0.7)';">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Services -->
+      <div>
+        <p style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.15em;margin:0 0 16px;">Services</p>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
+          {[
+            ['AI Sales Automation',           '/services/ai-sales-automation'],
+            ['Show Up on ChatGPT',            '/services/show-up-on-chatgpt'],
+            ['Qualified Leads',               '/services/qualified-leads'],
+            ['A Website That Sells',          '/services/website-that-sells'],
+            ['Business Process Automation',   '/services/ai-business-process-automation'],
+          ].map(([label, href]) => (
+            <li><a href={href} style="color:rgba(255,255,255,0.75);text-decoration:none;font-size:13.5px;transition:color 0.2s;" onmouseover="this.style.color='#99E2B4';" onmouseout="this.style.color='rgba(255,255,255,0.75)';">{label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- USA Office -->
+      <div>
+        <p style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.15em;margin:0 0 16px;">USA</p>
+        <address style="font-style:normal;color:rgba(255,255,255,0.75);font-size:13.5px;line-height:1.7;margin:0;">
+          16192 Coastal Highway<br/>
+          Lewes, Delaware 19958<br/>
+          <a href="tel:+19252909985" style="color:rgba(255,255,255,0.9);text-decoration:none;display:inline-block;margin-top:8px;font-weight:500;transition:color 0.2s;" onmouseover="this.style.color='#99E2B4';" onmouseout="this.style.color='rgba(255,255,255,0.9)';">+1 925 290 9985</a><br/>
+          <a href="mailto:jane@click2revenue.com" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:12.5px;transition:color 0.2s;" onmouseover="this.style.color='#99E2B4';" onmouseout="this.style.color='rgba(255,255,255,0.55)';">jane@click2revenue.com</a>
+        </address>
+      </div>
+
+      <!-- Australia Office -->
+      <div>
+        <p style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.15em;margin:0 0 16px;">Australia</p>
+        <address style="font-style:normal;color:rgba(255,255,255,0.75);font-size:13.5px;line-height:1.7;margin:0;">
+          Noosa Heads<br/>
+          Sunshine Coast, QLD 4567<br/>
+          <a href="tel:+61424985687" style="color:rgba(255,255,255,0.9);text-decoration:none;display:inline-block;margin-top:8px;font-weight:500;transition:color 0.2s;" onmouseover="this.style.color='#99E2B4';" onmouseout="this.style.color='rgba(255,255,255,0.9)';">+61 424 985 687</a><br/>
+          <a href="mailto:jane@click2revenue.com" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:12.5px;transition:color 0.2s;" onmouseover="this.style.color='#99E2B4';" onmouseout="this.style.color='rgba(255,255,255,0.55)';">jane@click2revenue.com</a>
+        </address>
+      </div>
+    </div>
+
+    <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:28px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+      <p style="color:rgba(255,255,255,0.4);font-size:12.5px;margin:0;">© 2026 Click2Revenue LLC. All rights reserved.</p>
+      <nav style="display:flex;flex-wrap:wrap;gap:24px;font-size:12.5px;">
+        <a href="/services" style="color:rgba(255,255,255,0.6);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white';" onmouseout="this.style.color='rgba(255,255,255,0.6)';">Services</a>
+        <a href="/contact" style="color:rgba(255,255,255,0.6);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white';" onmouseout="this.style.color='rgba(255,255,255,0.6)';">Contact</a>
+        <a href="/privacy-policy" style="color:rgba(255,255,255,0.6);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white';" onmouseout="this.style.color='rgba(255,255,255,0.6)';">Privacy</a>
+        <a href="/terms" style="color:rgba(255,255,255,0.6);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white';" onmouseout="this.style.color='rgba(255,255,255,0.6)';">Terms</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<style>
+  @media (max-width: 900px) {
+    footer .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 40px !important; }
+  }
+  @media (max-width: 560px) {
+    footer .footer-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
+    footer > div { padding: 56px 24px 32px !important; }
+  }
+</style>

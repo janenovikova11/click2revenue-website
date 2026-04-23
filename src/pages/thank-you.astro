@@ -1,0 +1,139 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+
+// Pull service/source from URL for conversion tracking granularity
+const service = Astro.url.searchParams.get('service') || '';
+const source  = Astro.url.searchParams.get('source')  || '';
+---
+
+<BaseLayout
+  title="You're in | Click2Revenue"
+  description="Your details have been received. Our AI will be with you shortly. A human follows up during business hours."
+  noindex={true}
+>
+
+  <!-- CONFIRMATION -->
+  <section style="background:#FAFAF7;padding:140px 24px 80px;position:relative;overflow:hidden;min-height:70vh;display:flex;align-items:center;">
+    <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;overflow:hidden;">
+      <div style="position:absolute;top:-200px;right:-120px;width:900px;height:900px;background:radial-gradient(circle,rgba(153,226,180,0.25) 0%,transparent 60%);border-radius:50%;filter:blur(20px);"></div>
+    </div>
+
+    <div style="position:relative;max-width:720px;margin:0 auto;text-align:center;">
+
+      <!-- Check icon -->
+      <div class="reveal" style="display:inline-flex;align-items:center;justify-content:center;width:80px;height:80px;border-radius:50%;background:#14746F;box-shadow:0 12px 32px rgba(20,116,111,0.25);margin-bottom:32px;">
+        <Icon name="check" size={40} stroke="white" />
+      </div>
+
+      <h1 class="reveal" style="font-size:clamp(40px,6vw,72px);font-weight:800;color:#0A0A0B;margin:0 0 20px;line-height:0.98;letter-spacing:-0.04em;">
+        You're in. <span style="color:#14746F;">AI is on it.</span>
+      </h1>
+      <p class="reveal" style="font-size:clamp(17px,1.6vw,20px);color:#4A4A4E;line-height:1.55;margin:0 auto;max-width:600px;font-weight:400;letter-spacing:-0.01em;">
+        The details landed safely. Our AI will be with you straight away. A human takes over as soon as business hours kick in.
+      </p>
+    </div>
+  </section>
+
+  <!-- WHAT HAPPENS NEXT -->
+  <section style="background:white;padding:100px 24px;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div class="reveal" style="text-align:center;margin-bottom:56px;">
+        <span class="label">What happens next</span>
+        <h2 style="font-size:clamp(30px,4vw,44px);color:#0A0A0B;margin:0;line-height:1.1;letter-spacing:-0.03em;">
+          Three things. In that <span style="color:#14746F;">order.</span>
+        </h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;" class="ty-steps">
+        {[
+          { n:'01', t:'You\'ll hear from us shortly',    b:'Our AI is on it now. A human will follow up to confirm your free strategy call as soon as business hours kick in. AU or US, whichever comes first.' },
+          { n:'02', t:'A 30-minute strategy call runs',  b:'No pitch deck. No sales script. A real look at your current setup and where the biggest opportunities are. You leave with clarity, whether you work with us or not.' },
+          { n:'03', t:'A custom plan gets built',        b:'If the call reveals a good fit, a plan specific to your business, your market, and your growth target gets put together. No generic proposals.' },
+        ].map(s => (
+          <div class="reveal" style="padding:36px 32px;background:#FAFAF7;border:1px solid #EAEAEC;border-radius:16px;">
+            <p style="font-weight:700;font-size:14px;color:#14746F;margin:0 0 20px;letter-spacing:0.05em;">{s.n}</p>
+            <h3 style="font-weight:700;font-size:20px;margin:0 0 12px;color:#0A0A0B;letter-spacing:-0.02em;line-height:1.2;">{s.t}</h3>
+            <p style="font-size:14.5px;color:#4A4A4E;line-height:1.65;margin:0;letter-spacing:-0.005em;">{s.b}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- KEEP EXPLORING -->
+  <section style="background:#F6F5F0;padding:100px 24px;">
+    <div style="max-width:900px;margin:0 auto;text-align:center;">
+      <div class="reveal">
+        <span class="label">While you wait</span>
+        <h2 style="font-size:clamp(28px,4vw,40px);color:#0A0A0B;margin:0 0 48px;line-height:1.1;letter-spacing:-0.03em;">
+          See what the system looks like for <span style="color:#14746F;">your industry.</span>
+        </h2>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;" class="ty-links">
+        {[
+          { t: 'AI Sales Automation',   h: '/services/ai-sales-automation' },
+          { t: 'Show Up on ChatGPT',    h: '/services/show-up-on-chatgpt' },
+          { t: 'Qualified Leads',       h: '/services/qualified-leads' },
+          { t: 'A Website That Sells',  h: '/services/website-that-sells' },
+        ].map(l => (
+          <a href={l.h} class="ty-link reveal">
+            <span>{l.t}</span>
+            <Icon name="arrow-right" size={14} />
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {service && (
+    <!-- Conversion tracking debug note (hidden from users) -->
+    <div style="display:none;" data-conversion data-service={service} data-source={source}></div>
+  )}
+
+</BaseLayout>
+
+<script is:inline>
+  // Fire conversion events on thank-you page load.
+  // Google Ads, Meta pixel, GA4 can read this event.
+  if (typeof window !== 'undefined') {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'lead_submitted',
+      service: document.querySelector('[data-conversion]')?.getAttribute('data-service') || '',
+      source:  document.querySelector('[data-conversion]')?.getAttribute('data-source')  || '',
+    });
+  }
+</script>
+
+<style>
+  .ty-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 28px;
+    background: white;
+    border: 1px solid #EAEAEC;
+    border-radius: 14px;
+    text-decoration: none;
+    color: #0A0A0B;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    transition: all 0.2s;
+  }
+  .ty-link:hover {
+    background: #0A0A0B;
+    color: white;
+    border-color: #0A0A0B;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(10,10,11,0.12);
+  }
+  @media (max-width: 760px) {
+    section { padding-left: 18px !important; padding-right: 18px !important; }
+    section:first-child { padding-top: 120px !important; padding-bottom: 64px !important; }
+    .ty-steps { grid-template-columns: 1fr !important; gap: 12px !important; }
+    .ty-steps > div { padding: 28px 24px !important; }
+    .ty-links { grid-template-columns: 1fr !important; }
+  }
+</style>

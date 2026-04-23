@@ -1,0 +1,160 @@
+---
+import Icon from './Icon.astro';
+export interface Props {
+  headline?: string;
+  subheadline?: string;
+  service?: string;
+  source?: string;
+}
+const {
+  headline = "Ready to find out what AI can do for your business?",
+  subheadline = "Our AI is on 24/7. A human follows up as soon as business hours kick in.",
+  service = 'general_enquiry',
+  source = 'main_form',
+} = Astro.props;
+---
+
+<section class="leadform-section" style="background:#FAFAF7;padding:120px 24px;position:relative;overflow:hidden;">
+  <div aria-hidden="true" style="position:absolute;top:-200px;right:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(153,226,180,0.18) 0%,transparent 60%);border-radius:50%;pointer-events:none;"></div>
+
+  <div style="position:relative;max-width:900px;margin:0 auto;">
+    <div class="reveal" style="text-align:center;margin-bottom:48px;">
+      <span class="label">Get started</span>
+      <h2 style="font-size:clamp(32px,4.5vw,52px);color:#0A0A0B;margin:0 0 16px;line-height:1.05;letter-spacing:-0.03em;">{headline}</h2>
+      <p style="font-size:17px;color:#4A4A4E;line-height:1.6;margin:0 auto;max-width:540px;font-weight:400;letter-spacing:-0.005em;">{subheadline}</p>
+    </div>
+
+    <div class="reveal form-wrapper" style="background:white;border-radius:24px;padding:48px;border:1px solid #EAEAEC;box-shadow:0 12px 40px rgba(10,10,11,0.06);">
+      <form id="lead-form">
+        <input type="hidden" name="service" value={service} />
+        <input type="hidden" name="source" value={source} />
+
+        <div style="margin-bottom:16px;">
+          <label style="display:block;font-size:12.5px;font-weight:600;color:#0A0A0B;margin-bottom:8px;letter-spacing:-0.005em;">Full name</label>
+          <input name="name" required placeholder="Jane Novikova" class="form-input"/>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;" class="form-row">
+          <div>
+            <label style="display:block;font-size:12.5px;font-weight:600;color:#0A0A0B;margin-bottom:8px;letter-spacing:-0.005em;">Business email</label>
+            <input name="email" type="email" required placeholder="you@yourbusiness.com" class="form-input"/>
+          </div>
+          <div>
+            <label style="display:block;font-size:12.5px;font-weight:600;color:#0A0A0B;margin-bottom:8px;letter-spacing:-0.005em;">Phone</label>
+            <input name="phone" type="tel" required placeholder="+61 4xx xxx xxx" class="form-input"/>
+          </div>
+        </div>
+
+        <div style="margin-bottom:24px;">
+          <label style="display:block;font-size:12.5px;font-weight:600;color:#0A0A0B;margin-bottom:8px;letter-spacing:-0.005em;">What's your biggest challenge? <span style="color:#8A8A90;font-weight:400;">(optional)</span></label>
+          <textarea name="message" rows="3" placeholder="Quick note on what you'd like to fix" class="form-input" style="resize:vertical;min-height:90px;"></textarea>
+        </div>
+
+        <button type="submit" id="form-submit" style="width:100%;padding:16px;background:#0A0A0B;color:white;font-family:'Inter',sans-serif;font-weight:600;font-size:15px;border:none;border-radius:10px;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;justify-content:center;gap:8px;letter-spacing:-0.005em;"
+          onmouseover="this.style.background='#14746F'; this.style.transform='translateY(-1px)'; this.style.boxShadow='0 8px 24px rgba(20,116,111,0.25)';"
+          onmouseout="this.style.background='#0A0A0B'; this.style.transform=''; this.style.boxShadow='';">
+          Send my details
+          <Icon name="arrow-right" size={16} />
+        </button>
+
+        <div style="margin-top:20px;display:flex;align-items:center;justify-content:center;gap:8px;">
+          <Icon name="shield" size={14} stroke="#14746F" />
+          <p style="margin:0;font-size:12.5px;color:#8A8A90;">Your data is safe. Our AI replies instantly.</p>
+        </div>
+      </form>
+
+      <div id="form-success" style="display:none;text-align:center;padding:32px 0;">
+        <div style="width:64px;height:64px;margin:0 auto 20px;border-radius:50%;background:rgba(20,116,111,0.1);display:flex;align-items:center;justify-content:center;">
+          <Icon name="check" size={32} stroke="#14746F" />
+        </div>
+        <h3 style="font-size:22px;margin:0 0 12px;letter-spacing:-0.02em;">You're in.</h3>
+        <p style="font-size:15px;color:#4A4A4E;margin:0 auto;line-height:1.6;max-width:420px;">Our AI is on it already. A human follows up as soon as business hours kick in.</p>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:32px;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;">
+      <span style="font-size:13px;color:#8A8A90;">Prefer to talk?</span>
+      <a href="tel:+19252909985" style="color:#0A0A0B;text-decoration:none;font-weight:500;font-size:14px;display:inline-flex;align-items:center;gap:6px;letter-spacing:-0.005em;">
+        <Icon name="phone" size={13} stroke="#14746F" /> USA +1 925 290 9985
+      </a>
+      <a href="tel:+61424985687" style="color:#0A0A0B;text-decoration:none;font-weight:500;font-size:14px;display:inline-flex;align-items:center;gap:6px;letter-spacing:-0.005em;">
+        <Icon name="phone" size={13} stroke="#14746F" /> AU +61 424 985 687
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .form-input {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1px solid #EAEAEC;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14.5px;
+    color: #0A0A0B;
+    outline: none;
+    transition: all 0.2s;
+    background: #FAFAF7;
+    letter-spacing: -0.005em;
+  }
+  .form-input:focus {
+    border-color: #14746F;
+    box-shadow: 0 0 0 3px rgba(20,116,111,0.1);
+    background: white;
+  }
+  .form-input::placeholder { color: #B0B0B5; }
+
+  @media (max-width: 600px) {
+    .leadform-section { padding: 80px 20px !important; }
+    .form-row { grid-template-columns: 1fr !important; }
+    .form-wrapper { padding: 28px 24px !important; }
+  }
+</style>
+
+<script is:inline>
+  document.getElementById('lead-form')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form    = e.target;
+    const submit  = document.getElementById('form-submit');
+    const success = document.getElementById('form-success');
+
+    submit.disabled = true;
+    submit.style.opacity = '0.7';
+    submit.innerHTML = 'Sending...';
+
+    const fd = new FormData(form);
+    const data = Object.fromEntries(fd.entries());
+
+    try {
+      // Submit directly to Go High Level form endpoint (no-cors, optimistic success).
+      // Server-side submission will be wired in during Cloudflare Pages deployment
+      // using the GHL API key stored as an environment variable.
+      const ghlData = new FormData();
+      ghlData.set('full_name', String(data.name || ''));
+      ghlData.set('email',     String(data.email || ''));
+      ghlData.set('phone',     String(data.phone || ''));
+      ghlData.set('message',   String(data.message || ''));
+      ghlData.set('service',   String(data.service || ''));
+      ghlData.set('source',    String(data.source || ''));
+
+      await fetch('https://link.click2revenue.com/widget/form/LsXeOkHaLLRXiJd7qQ7x/submit', {
+        method: 'POST',
+        mode: 'no-cors',
+        body: ghlData,
+      }).catch(() => { /* no-cors: ignore */ });
+
+      form.style.display = 'none';
+      success.style.display = 'block';
+
+      setTimeout(() => {
+        window.location.href = '/thank-you?service=' + encodeURIComponent(String(data.service)) + '&source=' + encodeURIComponent(String(data.source));
+      }, 1200);
+    } catch (err) {
+      submit.disabled = false;
+      submit.style.opacity = '1';
+      submit.innerHTML = 'Try again';
+      alert('Sorry, something went wrong. Please try again or call us directly.');
+    }
+  });
+</script>

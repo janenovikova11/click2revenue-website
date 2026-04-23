@@ -1,0 +1,120 @@
+---
+import Icon from './Icon.astro';
+import LeadForm from './LeadForm.astro';
+
+export interface Props {
+  service?: string;
+  source?: string;
+  guaranteeText?: string;
+  formHeadline?: string;
+  formSubheadline?: string;
+}
+const {
+  service = 'general_enquiry',
+  source = 'service_page',
+  guaranteeText = "If your system isn't live and generating results 14 days after kickoff, your first month is on us. No small print.",
+  formHeadline,
+  formSubheadline,
+} = Astro.props;
+
+const promise = [
+  { icon: 'shield', title: 'No lock-in',          body: 'Month-to-month after the 90-day build. Leave with 30 days notice.' },
+  { icon: 'eye',    title: 'Full visibility',     body: 'Every dollar tracked from ad spend to closed sale. No vanity metrics.' },
+  { icon: 'filter', title: 'Quality, not volume', body: 'Lead quality metrics reported alongside lead count every month.' },
+  { icon: 'users',  title: 'Real humans',         body: 'AU and US business hours. Named account lead. Not a ticketing system.' },
+];
+---
+
+<!-- TRUST PARTNERS -->
+<section style="background:white;padding:72px 24px;border-top:1px solid #EAEAEC;border-bottom:1px solid #EAEAEC;">
+  <div style="max-width:1200px;margin:0 auto;text-align:center;">
+    <p style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#8A8A90;font-weight:500;margin:0 0 24px;">Certified partners</p>
+    <div style="display:flex;align-items:center;justify-content:center;gap:32px 48px;flex-wrap:wrap;" class="trust-row-univ">
+      {['Google Partner', 'Meta Business Partner', 'HubSpot', 'Salesforce', 'Semrush', 'Zoho', 'Go High Level'].map(p => (
+        <span style="font-weight:600;font-size:14px;color:#8A8A90;letter-spacing:-0.01em;transition:color 0.2s;"
+              onmouseover="this.style.color='#0A0A0B';"
+              onmouseout="this.style.color='#8A8A90';">{p}</span>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- PROMISE -->
+<section style="background:#FAFAF7;padding:100px 24px;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 48px;">
+      <span class="label">Our promise</span>
+      <h2 style="font-size:clamp(30px,4.5vw,50px);color:#0A0A0B;margin:0;line-height:1.05;letter-spacing:-0.035em;">
+        What you can <span style="color:#14746F;">count on.</span>
+      </h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;" class="promise-grid-univ">
+      {promise.map(p => (
+        <div class="reveal" style="padding:28px 24px;background:white;border:1px solid #EAEAEC;border-radius:14px;">
+          <div style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;background:#FAFAF7;border:1px solid #EAEAEC;color:#14746F;margin-bottom:18px;">
+            <Icon name={p.icon} size={20} />
+          </div>
+          <h3 style="font-weight:700;font-size:16px;margin:0 0 10px;color:#0A0A0B;letter-spacing:-0.02em;">{p.title}</h3>
+          <p style="font-size:13.5px;color:#4A4A4E;line-height:1.6;margin:0;letter-spacing:-0.005em;">{p.body}</p>
+        </div>
+      ))}
+    </div>
+    <div class="reveal" style="margin-top:28px;padding:28px 36px;background:white;border:1px solid #EAEAEC;border-radius:14px;text-align:center;">
+      <p style="margin:0;font-size:16px;color:#0A0A0B;line-height:1.6;letter-spacing:-0.005em;max-width:720px;margin-inline:auto;">
+        {guaranteeText.split('your first month is on us.')[0]}
+        <strong style="color:#14746F;">your first month is on us.</strong>
+        {guaranteeText.split('your first month is on us.')[1]}
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW FAST YOU GO LIVE -->
+<section style="background:white;padding:100px 24px;">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 56px;">
+      <span class="label">How fast you go live</span>
+      <h2 style="font-size:clamp(30px,4.5vw,48px);color:#0A0A0B;margin:0;line-height:1.05;letter-spacing:-0.035em;">
+        Three steps to get <span style="color:#14746F;">going.</span>
+      </h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;" class="steps-grid-univ">
+      {[
+        { n: '01', t: 'Book a free strategy call',        b: 'Your current setup gets audited. You walk out knowing exactly where revenue is leaking.' },
+        { n: '02', t: 'Get a custom revenue plan',        b: 'Your system gets designed around your business. Built, not templated.' },
+        { n: '03', t: 'Start generating qualified leads', b: 'Live within 2 weeks. Measurable results within 90 days.' },
+      ].map(s => (
+        <div class="reveal" style="padding:36px 32px;background:#FAFAF7;border:1px solid #EAEAEC;border-radius:16px;">
+          <p style="font-weight:700;font-size:14px;color:#14746F;margin:0 0 20px;letter-spacing:0.05em;">{s.n}</p>
+          <h3 style="font-weight:700;font-size:20px;margin:0 0 12px;color:#0A0A0B;letter-spacing:-0.02em;line-height:1.2;">{s.t}</h3>
+          <p style="font-size:14.5px;color:#4A4A4E;line-height:1.65;margin:0;letter-spacing:-0.005em;">{s.b}</p>
+        </div>
+      ))}
+    </div>
+    <div class="reveal" style="text-align:center;margin-top:48px;">
+      <a href="#full-form-anchor" class="btn-primary">
+        Start step 1 now
+        <Icon name="arrow-right" size={16} />
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- LEAD FORM -->
+<div id="full-form-anchor"></div>
+<LeadForm
+  service={service}
+  source={source}
+  headline={formHeadline || "Ready to see what this looks like for your business?"}
+  subheadline={formSubheadline || "Our AI is on 24/7. A human follows up as soon as business hours kick in."}
+/>
+
+<style>
+  @media (max-width: 1000px) {
+    .promise-grid-univ { grid-template-columns: repeat(2, 1fr) !important; }
+    .steps-grid-univ   { grid-template-columns: 1fr !important; }
+  }
+  @media (max-width: 560px) {
+    .promise-grid-univ { grid-template-columns: 1fr !important; gap: 10px !important; }
+  }
+</style>

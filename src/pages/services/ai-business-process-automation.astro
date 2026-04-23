@@ -1,0 +1,186 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import UniversalBottom from '../../components/UniversalBottom.astro';
+import Icon from '../../components/Icon.astro';
+
+const pains = [
+  { title: 'Admin is eating the day.',                                body: "Quoting, scheduling, chasing invoices, following up with applicants, sending reports, tracking certifications. Each task takes 20 minutes. They happen 15 times a week. That's hours of skilled people doing clerical work. Work that exists to support the business, not to grow it. Most of it could run on its own." },
+  { title: 'The thing that slips through.',                           body: "A tender deadline. A staff certification expiry. A follow-up that was supposed to go out at 30 days. When processes live in someone's head or a shared spreadsheet, they get dropped. Not because anyone is careless. Because humans are not built to remember 40 recurring tasks at once. Systems are." },
+  { title: "You already know what you'd automate.",                   body: "Most business owners can name the processes they'd fix if they could. The quote that takes three hours and could take fifteen minutes. The hiring process that requires someone to read 80 applications. The report that gets rebuilt from scratch every month. The technical barrier made them feel out of reach. They're not." },
+];
+
+const steps = [
+  { n: '01', t: 'Every time-consuming process gets mapped.',   b: "A working session runs through the business: every task that happens more than once, every process with steps, every place where someone is doing the same thing repeatedly. The list is almost always longer than people expect. The highest-value automations get prioritised." },
+  { n: '02', t: 'Custom automations get built for the actual business.',b: "Not off-the-shelf templates that half-fit. Workflows built for the specific tools, teams, and processes already in place. If a new platform is needed, a booking system, a rental inventory tool, a reporting dashboard, it gets built and connected." },
+  { n: '03', t: 'The system runs. Time goes back to the business.',b: "The automations fire without anyone triggering them. Quotes go out. Follow-ups land. Reports send. Certifications get flagged. The business operates the same way it did, just without the manual effort underneath it." },
+];
+
+const examples = [
+  { title: 'The quote that used to take three hours.',                body: "An industrial services company builds complex quotes for mining clients. Each one pulls from specs, past jobs, and pricing tables, and took most of a day. An AI-powered quoting system now drafts from a structured brief. The estimator reviews, adjusts, approves, and sends. Under 15 minutes. Same quote, a fraction of the time." },
+  { title: '80 applications. Eight interviews booked.',                body: "A growing tradie business advertises a site supervisor role and gets flooded. Someone has to read all of them. An automated hiring flow now handles it: applications come in, AI screens against the role criteria, pre-qualification questions go out automatically, and the top candidates get booked for interviews without anyone touching a spreadsheet." },
+  { title: 'The invoice that never got paid.',                         body: "A commercial cleaning company runs 40 active clients and sends invoices every month. Overdue ones used to sit until someone noticed. An automated debtor sequence now runs in the background: SMS at Day 7, email with the invoice attached at Day 14, escalation at Day 21. Debtor days dropped. Nobody had to make awkward calls." },
+  { title: '22 monthly reports. Zero hours to produce them.',          body: "A marketing agency spends three days a month building client reports from five different platforms. An automated reporting system pulls the data, formats it into a branded PDF, and sends it on schedule. The team now spends those three days on strategy instead of copy-paste." },
+  { title: 'The rental business that still ran on a whiteboard.',      body: "An equipment hire company took bookings by phone and tracked availability on a whiteboard. Double-bookings happened. A custom online inventory platform now shows live availability, takes bookings, collects a deposit, sends a confirmation, and fires a return reminder the morning the gear is due back. The phone stopped ringing for bookings." },
+  { title: '30 casuals. One afternoon to onboard them all.',           body: "A hospitality group hires a wave of casual staff every summer season. New hires used to mean a stack of paperwork, manual scheduling, and someone chasing RSA confirmations for a week. An automated onboarding flow now fires the moment a contract is signed: document requests, uniform sizing, induction scheduling, RSA check, first-shift reminder. All without HR touching it." },
+  { title: 'Nobody knew the ticket was about to expire.',               body: "A construction company has 14 staff with different licence classes, white cards, and equipment certifications, all expiring on different dates. One lapse and the site stops. An automated compliance tracker now monitors every expiry date and sends reminders to the staff member and the site manager 30 days out and again at 7 days. Nothing lapses." },
+  { title: 'The solar installer who stayed in touch after every job.', body: "After a panel installation, most customers never hear from the company again. A post-job sequence now runs automatically: a thank-you message the day after, a satisfaction check at 7 days, a performance question at 6 months, and a referral ask at 12 months. Referrals went up. Nothing was done manually." },
+];
+
+const proofStats = [
+  { n: '3 hrs → 15 min',         l: 'Quote turnaround',        sub: "For an industrial services client after an AI-powered quoting system replaced the manual estimation process." },
+  { n: '30 days/year',            l: 'Time recovered',          sub: "Estimated time saved across reporting, follow-up, and admin automation for a marketing agency running 22 active client accounts." },
+  { n: 'Zero',                    l: 'Certification lapses',    sub: "Since compliance tracking automation went live for a construction client with 14 staff across multiple licence classes." },
+];
+---
+
+<BaseLayout
+  title="AI Business Process Automation for Service Businesses | Click2Revenue"
+  description="Automate quoting, hiring, invoicing, reporting, onboarding and compliance. Custom AI workflows for AU and US service businesses. Free process audit."
+>
+  <script slot="schema" type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "Service",
+    "name": "AI Business Process Automation",
+    "description": "Custom AI workflows for quoting, hiring, reporting, compliance, and any repeatable process. Built for service businesses.",
+    "url": "https://click2revenue.com/services/ai-business-process-automation",
+    "provider": { "@type": "Organization", "name": "Click2Revenue", "url": "https://click2revenue.com" },
+    "areaServed": ["AU", "US"], "serviceType": "Business Process Automation"
+  })} />
+  <script slot="schema" type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://click2revenue.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://click2revenue.com/services" },
+      { "@type": "ListItem", "position": 3, "name": "AI Business Process Automation", "item": "https://click2revenue.com/services/ai-business-process-automation" }
+    ]
+  })} />
+
+  <!-- HERO -->
+  <section style="background:#FAFAF7;padding:140px 24px 80px;position:relative;overflow:hidden;">
+    <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;overflow:hidden;">
+      <div style="position:absolute;top:-180px;right:-120px;width:900px;height:900px;background:radial-gradient(circle,rgba(153,226,180,0.22) 0%,transparent 60%);border-radius:50%;filter:blur(20px);"></div>
+    </div>
+    <div style="position:relative;max-width:1100px;margin:0 auto;">
+      <div style="max-width:900px;margin:0 auto;text-align:center;">
+        <span class="label">AI Business Process Automation</span>
+        <h1 style="font-size:clamp(40px,6vw,80px);font-weight:800;color:#0A0A0B;margin:0 0 24px;line-height:0.98;letter-spacing:-0.045em;">
+          Most of the work running your business <span style="color:#14746F;">shouldn't need a human.</span>
+        </h1>
+        <p style="font-size:clamp(17px,1.6vw,20px);color:#4A4A4E;line-height:1.55;margin:0 auto 36px;max-width:680px;font-weight:400;letter-spacing:-0.01em;">
+          Every task your team does more than once the same way — quoting, hiring, following up, reporting, scheduling, chasing — can almost certainly be automated. Here's what that looks like in practice.
+        </p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;" class="hero-cta-row">
+          <a href="#examples" class="btn-primary">See what we've automated <Icon name="arrow-right" size={16} /></a>
+          <a href="#full-form-anchor" class="btn-secondary">Book my free process audit</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section style="background:white;padding:110px 24px;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div class="reveal" style="max-width:760px;margin-bottom:56px;text-align:center;margin-inline:auto;">
+        <h2 style="font-size:clamp(32px,4.5vw,54px);color:#0A0A0B;margin:0;line-height:1.05;letter-spacing:-0.035em;">
+          The hours nobody <span style="color:#14746F;">planned to spend.</span>
+        </h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;" class="pain-grid">
+        {pains.map(p => (
+          <div class="reveal" style="padding:36px 32px;background:#FAFAF7;border:1px solid #EAEAEC;border-radius:16px;">
+            <h3 style="font-weight:700;font-size:19px;color:#14746F;margin:0 0 14px;letter-spacing:-0.02em;line-height:1.3;">{p.title}</h3>
+            <p style="font-size:14.5px;color:#4A4A4E;line-height:1.7;margin:0;letter-spacing:-0.005em;">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section style="background:#F6F5F0;padding:110px 24px;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 64px;">
+        <span class="label">How it works</span>
+        <h2 style="font-size:clamp(30px,4.5vw,50px);color:#0A0A0B;margin:0;line-height:1.05;letter-spacing:-0.035em;">
+          Map it. Build it. <span style="color:#14746F;">Let it run.</span>
+        </h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;" class="steps-grid">
+        {steps.map(s => (
+          <div class="reveal" style="padding:40px 32px;background:white;border:1px solid #EAEAEC;border-radius:16px;">
+            <p style="font-weight:700;font-size:14px;color:#14746F;margin:0 0 22px;letter-spacing:0.05em;">{s.n}</p>
+            <h3 style="font-weight:700;font-size:21px;margin:0 0 14px;color:#0A0A0B;letter-spacing:-0.02em;line-height:1.2;">{s.t}</h3>
+            <p style="font-size:14.5px;color:#4A4A4E;line-height:1.65;margin:0;letter-spacing:-0.005em;">{s.b}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- EXAMPLES GALLERY -->
+  <section id="examples" style="background:white;padding:110px 24px;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div class="reveal" style="text-align:center;max-width:720px;margin:0 auto 56px;">
+        <span class="label">Real automations. Real businesses.</span>
+        <h2 style="font-size:clamp(30px,4.5vw,50px);color:#0A0A0B;margin:0 0 18px;line-height:1.05;letter-spacing:-0.035em;">
+          A few things we've built for <span style="color:#14746F;">businesses like yours.</span>
+        </h2>
+        <p style="font-size:16px;color:#4A4A4E;line-height:1.6;margin:0;letter-spacing:-0.005em;">
+          Every automation is custom. These are examples, not templates. The specifics change depending on the business, the team, and the tools already in use.
+        </p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;" class="examples-grid">
+        {examples.map(ex => (
+          <div class="reveal" style="padding:32px;background:#FAFAF7;border:1px solid #EAEAEC;border-left:3px solid #14746F;border-radius:14px;">
+            <h3 style="font-weight:700;font-size:18px;margin:0 0 12px;color:#0A0A0B;letter-spacing:-0.02em;line-height:1.3;font-style:italic;">{ex.title}</h3>
+            <p style="font-size:14.5px;color:#4A4A4E;line-height:1.7;margin:0;letter-spacing:-0.005em;">{ex.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF STRIP -->
+  <section style="background:#0A0A0B;padding:100px 24px;position:relative;overflow:hidden;">
+    <div aria-hidden="true" style="position:absolute;top:-200px;right:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(20,116,111,0.3) 0%,transparent 60%);border-radius:50%;"></div>
+    <div style="position:relative;max-width:1100px;margin:0 auto;">
+      <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 56px;">
+        <span style="display:inline-flex;align-items:center;gap:10px;font-family:'Inter',sans-serif;font-weight:600;font-size:12.5px;letter-spacing:0.12em;text-transform:uppercase;color:#99E2B4;margin-bottom:24px;padding:7px 14px;background:rgba(153,226,180,0.14);border:1px solid rgba(153,226,180,0.25);border-radius:99px;">Proof</span>
+        <h2 style="font-size:clamp(30px,4.5vw,50px);color:white;margin:0;line-height:1.05;letter-spacing:-0.035em;">
+          The numbers behind<br/>the automations.
+        </h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;" class="proof-grid">
+        {proofStats.map(s => (
+          <div class="reveal" style="padding:36px 32px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:16px;">
+            <p style="font-weight:800;font-size:clamp(34px,4vw,48px);color:white;margin:0;line-height:1;letter-spacing:-0.04em;">{s.n}</p>
+            <p style="font-size:15px;color:#99E2B4;margin:14px 0 12px;font-weight:600;letter-spacing:-0.005em;">{s.l}</p>
+            <p style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.6;margin:0;letter-spacing:-0.005em;">{s.sub}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <UniversalBottom
+    service="ai_biz_process_automation"
+    source="service_page"
+    guaranteeText="If your first automation isn't live and running within 14 days of kickoff, your first month is on us. No small print."
+    formHeadline="Tell us what you'd automate if you could."
+    formSubheadline="A free process audit runs within 24 hours. We map the tasks eating the most time and show you what they'd look like automated."
+  />
+
+</BaseLayout>
+
+<style>
+  @media (max-width: 1000px) {
+    .pain-grid     { grid-template-columns: 1fr !important; }
+    .steps-grid    { grid-template-columns: 1fr !important; }
+    .examples-grid { grid-template-columns: 1fr !important; }
+    .proof-grid    { grid-template-columns: 1fr !important; }
+  }
+  @media (max-width: 760px) {
+    section:first-child { padding: 120px 18px 64px !important; }
+    section { padding-left: 18px !important; padding-right: 18px !important; padding-top: 64px !important; padding-bottom: 64px !important; }
+    .hero-cta-row a { width: 100%; justify-content: center; }
+  }
+</style>

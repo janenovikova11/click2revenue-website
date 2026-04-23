@@ -1,0 +1,117 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import FloatingCTA from '../components/FloatingCTA.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  noindex?: boolean;
+}
+
+const { title, description, ogImage = '/og-default.png', noindex = false } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const absOgImage  = new URL(ogImage, Astro.site).toString();
+
+// Site-wide Organization schema (injected on every page)
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Click2Revenue",
+  "legalName": "Click2Revenue LLC",
+  "url": "https://click2revenue.com",
+  "logo": "https://click2revenue.com/logo.png",
+  "foundingDate": "2017",
+  "founder": { "@type": "Person", "name": "Jane Novikova" },
+  "email": "jane@click2revenue.com",
+  "telephone": ["+61-424-985-687", "+1-925-290-9985"],
+  "address": [
+    { "@type": "PostalAddress", "streetAddress": "Noosa Heads", "addressLocality": "Sunshine Coast", "addressRegion": "QLD", "postalCode": "4567", "addressCountry": "AU" },
+    { "@type": "PostalAddress", "streetAddress": "16192 Coastal Highway", "addressLocality": "Lewes", "addressRegion": "DE", "postalCode": "19958", "addressCountry": "US" }
+  ],
+  "areaServed": ["AU", "US"],
+  "sameAs": ["https://linkedin.com/company/click2revenue"],
+  "description": "AI marketing and sales automation agency for service businesses in Australia and the United States."
+};
+
+// Website schema — enables Google sitelinks search box
+const webSiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Click2Revenue",
+  "url": "https://click2revenue.com",
+  "publisher": { "@type": "Organization", "name": "Click2Revenue", "url": "https://click2revenue.com" }
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicon set -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#14746F" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL.toString()} />
+
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Click2Revenue" />
+    <meta property="og:locale" content="en_AU" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={absOgImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content={canonicalURL.toString()} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={absOgImage} />
+
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Site-wide schema -->
+    <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(webSiteSchema)} />
+
+    <!-- Per-page schema slot (Service, LocalBusiness, FAQPage, etc.) -->
+    <slot name="schema" />
+  </head>
+  <body class="bg-white text-ink">
+    <Nav />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <FloatingCTA />
+
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add('visible');
+              observer.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>
