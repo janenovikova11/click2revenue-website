@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import UniversalBottom from '../../components/UniversalBottom.astro';
+import FAQSection from '../../components/FAQSection.astro';
 import Icon from '../../components/Icon.astro';
 
 const pains = [
@@ -31,6 +32,14 @@ const proofStats = [
   { n: '30 days/year',            l: 'Time recovered',          sub: "Estimated time saved across reporting, follow-up, and admin automation for a marketing agency running 22 active client accounts." },
   { n: 'Zero',                    l: 'Certification lapses',    sub: "Since compliance tracking automation went live for a construction client with 14 staff across multiple licence classes." },
 ];
+const faqs = [
+  { q: `How do you decide which processes to automate first?`, a: `A mapping session runs at the start — a conversation that walks through every task happening more than once, every process with multiple steps, every place where someone is doing repetitive work. From that list, the automations with the highest time savings or highest error risk get prioritised first. Typically: quoting, follow-up, and reporting are the top three for most service businesses. The list almost always reveals things the business owner hadn't thought to flag.` },
+  { q: `Does this replace any of my staff?`, a: `Not usually. The goal is to move skilled people off repetitive tasks so they can do the work that requires judgment. A bookkeeper who spends 8 hours a month building client reports manually can spend that time on advisory work instead — which is where the value actually is. The automation handles the predictable. The people handle the unpredictable. In some cases, automation means a growing business doesn't need to hire a new admin person to handle volume. It's a different thing from replacing someone who's doing something irreplaceable.` },
+  { q: `What tools does this integrate with?`, a: `The automations connect to whatever is already in use — Google Workspace, Microsoft 365, Xero, MYOB, Tradify, ServiceM8, Deputy, Stripe, and most common service business platforms. New tools get introduced only when the existing ones can't do the job. The preference is always to automate within the tools the team already knows rather than adding new platforms.` },
+  { q: `What if I need something very specific to my industry?`, a: `That's the point. Off-the-shelf automation tools give you pre-built templates that half-fit. This service builds for the actual business — the specific quoting format, the compliance requirements, the approval workflow, the industry-specific terminology. If a mining services company needs a quote that formats to specific HSE standards, or a dental practice needs a recall sequence that complies with AHPRA communication guidelines, that's what gets built.` },
+  { q: `How do I know the automation is working?`, a: `Every automation includes a monitoring setup — you can see when it fires, what it processed, and whether it succeeded or flagged an error. The monthly reporting covers automation performance alongside everything else. If something breaks or stops firing correctly, the monitoring catches it before it becomes a problem. You're not handed a system and left to figure it out — the ongoing support means issues get flagged and fixed as part of the service.` },
+];
+
 ---
 
 <BaseLayout
@@ -62,7 +71,7 @@ const proofStats = [
     <div style="position:relative;max-width:1100px;margin:0 auto;">
       <div style="max-width:900px;margin:0 auto;text-align:center;">
         <span class="label">AI Business Process Automation</span>
-        <h1 style="font-size:clamp(40px,6vw,80px);font-weight:800;color:#0A0A0B;margin:0 0 24px;line-height:0.98;letter-spacing:-0.045em;">
+        <h1 style="font-size:clamp(30px,6vw,80px);font-weight:800;color:#0A0A0B;margin:0 0 24px;line-height:1.05;letter-spacing:-0.04em;text-wrap:balance;">
           Most of the work running your business <span style="color:#14746F;">shouldn't need a human.</span>
         </h1>
         <p style="font-size:clamp(17px,1.6vw,20px);color:#4A4A4E;line-height:1.55;margin:0 auto 36px;max-width:680px;font-weight:400;letter-spacing:-0.01em;">
@@ -146,7 +155,7 @@ const proofStats = [
       <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 56px;">
         <span style="display:inline-flex;align-items:center;gap:10px;font-family:'Inter',sans-serif;font-weight:600;font-size:12.5px;letter-spacing:0.12em;text-transform:uppercase;color:#99E2B4;margin-bottom:24px;padding:7px 14px;background:rgba(153,226,180,0.14);border:1px solid rgba(153,226,180,0.25);border-radius:99px;">Proof</span>
         <h2 style="font-size:clamp(30px,4.5vw,50px);color:white;margin:0;line-height:1.05;letter-spacing:-0.035em;">
-          The numbers behind<br/>the automations.
+          The numbers behind<br class="br-desktop"/> the automations.
         </h2>
       </div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;" class="proof-grid">
@@ -160,6 +169,16 @@ const proofStats = [
       </div>
     </div>
   </section>
+
+
+  <!-- ═══ FAQ ═══ -->
+  <FAQSection
+    kicker="Frequently asked"
+    heading="Business Process Automation"
+    accent="questions answered"
+    faqs={faqs}
+    background="white"
+  />
 
   <UniversalBottom
     service="ai_biz_process_automation"

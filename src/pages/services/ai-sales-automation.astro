@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import UniversalBottom from '../../components/UniversalBottom.astro';
+import FAQSection from '../../components/FAQSection.astro';
 import Icon from '../../components/Icon.astro';
 
 const pains = [
@@ -41,6 +42,14 @@ const tools = [
   { pay: 'Reporting & attribution',       using: 'Various',                          cost: '$50 – $200' },
   { pay: 'SMS follow-up automation',      using: 'Hatch, Drip',                      cost: '$100 – $200' },
 ];
+const faqs = [
+  { q: `What happens to my existing CRM — do I have to migrate everything?`, a: `If the existing CRM is worth keeping, the migration gets handled during the setup period. If it's not — if it's a spreadsheet, a half-used HubSpot account, or something nobody actually logs into — the new system starts clean. Lift CRM becomes the operational hub. Contact history, open deals, and active leads get imported. What doesn't come across is the noise — the dead leads and old contacts that were cluttering the pipeline anyway.` },
+  { q: `Will the AI voice bot sound robotic to my customers?`, a: `No. The voice bots use natural language models — they hold real conversations, not phone trees. They're trained on your specific services, common questions, pricing structure, and the way your business talks. Most callers don't know they're talking to an AI until the bot mentions it (which it does, transparently). The goal is speed, not deception — a caller at 8pm gets a response instantly instead of a voicemail that doesn't get returned until 9am.` },
+  { q: `What if a lead wants to speak to a human straight away?`, a: `The bot hands off. It's configured with escalation triggers — if the caller asks for a human, says they have an emergency, or hits a topic outside the bot's training, it offers a callback from the team or takes a message with full context attached. The human who calls back already knows what the lead asked, what they said, and where they are in the qualification process.` },
+  { q: `How many follow-up messages does the system send before stopping?`, a: `The default sequence runs across 6 to 8 touches over 14 days for a new lead — Day 1, Day 3, Day 7, Day 14 — across SMS and email. After that, leads move to a long-term nurture sequence (monthly, low-frequency) rather than being marked dead. For the quote follow-up sequence, a separate track runs. All sequence lengths and frequencies get configured for the business and the sales cycle — a tradie quoting emergency jobs runs shorter sequences than a financial adviser with a 6-month consideration cycle.` },
+  { q: `Do I need technical skills to manage this?`, a: `No. Everything gets configured during the setup period. The team walkthrough covers every part the team needs to use day-to-day — checking the pipeline, responding to conversations, reviewing the dashboard. The mobile app (iOS and Android) means it's accessible from a phone on the job site, not just a desk. Ongoing support is included — if something needs adjusting or a new automation needs building, that's part of the service.` },
+];
+
 ---
 
 <BaseLayout
@@ -72,8 +81,8 @@ const tools = [
     <div style="position:relative;max-width:1100px;margin:0 auto;">
       <div style="max-width:880px;margin:0 auto;text-align:center;">
         <span class="label">AI Sales Automation</span>
-        <h1 style="font-size:clamp(40px,6vw,84px);font-weight:800;color:#0A0A0B;margin:0 0 24px;line-height:0.98;letter-spacing:-0.045em;">
-          Every lead followed up. Every call answered.<br/><span style="color:#14746F;">More sales. Same team.</span>
+        <h1 style="font-size:clamp(30px,6vw,84px);font-weight:800;color:#0A0A0B;margin:0 0 24px;line-height:1.05;letter-spacing:-0.04em;text-wrap:balance;">
+          Every lead followed up. Every call answered.<br class="br-desktop"/><span style="color:#14746F;">More sales. Same team.</span>
         </h1>
         <p style="font-size:clamp(17px,1.6vw,20px);color:#4A4A4E;line-height:1.55;margin:0 auto 36px;max-width:680px;font-weight:400;letter-spacing:-0.01em;">
           AI Sales Automation runs your entire sales process from the first call to the signed contract, so your team focuses on closing deals, not chasing them.
@@ -132,7 +141,7 @@ const tools = [
       <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 56px;">
         <span class="label">What's included</span>
         <h2 style="font-size:clamp(30px,4.5vw,50px);color:#0A0A0B;margin:0;line-height:1.05;letter-spacing:-0.035em;">
-          Everything your sales process<br/>needs. <span style="color:#14746F;">One platform.</span>
+          Everything your sales process<br class="br-desktop"/> needs. <span style="color:#14746F;">One platform.</span>
         </h2>
       </div>
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;" class="feat-grid-4">
@@ -187,6 +196,16 @@ const tools = [
       </p>
     </div>
   </section>
+
+
+  <!-- ═══ FAQ ═══ -->
+  <FAQSection
+    kicker="Frequently asked"
+    heading="AI Sales Automation"
+    accent="questions answered"
+    faqs={faqs}
+    background="white"
+  />
 
   <UniversalBottom
     service="ai_sales_automation"

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import UniversalBottom from '../../components/UniversalBottom.astro';
+import FAQSection from '../../components/FAQSection.astro';
 import Icon from '../../components/Icon.astro';
 
 const pains = [
@@ -26,6 +27,14 @@ const features = [
   { icon: 'chart',    name: 'AI Search Monitoring',          desc: "Monthly reporting shows what AI engines say about your business: what queries are appearing, what competitors are being recommended for, what content to create next." },
   { icon: 'loop',     name: 'Quarterly Content Updates',     desc: "AI search visibility is not set and forget. New localised content goes live each quarter: new service angles, seasonal topics, location-specific pages. Presence grows. It doesn't stagnate." },
 ];
+const faqs = [
+  { q: `How long does it take to start appearing on ChatGPT?`, a: `The first content goes live in two weeks. AI search visibility builds from there — typically 4 to 8 weeks before consistent appearances in AI search results for the target queries. It's not instant like paid ads. It's not as slow as traditional SEO. The monitoring reports show what's appearing and what's not, from the first month.` },
+  { q: `Can you guarantee my business will be #1 on ChatGPT?`, a: `No, and anyone who claims that is lying. AI search results vary by query, user location, conversation context, and which AI engine is being used. What gets guaranteed: the work gets underway and shows measurable movement within 30 days, or the first month is free. "Measurable movement" means AI engines are starting to cite the business for the target queries — not necessarily first position on every query.` },
+  { q: `Is this the same as regular Google SEO?`, a: `Related but different. Traditional SEO optimises for Google's 10 blue links — the ranked search results page. AI search optimisation structures content so AI engines cite your business in their direct answers, before a user clicks a single result. The content that works for AI search also improves traditional SEO, so both benefit. But the approach — localised service pages, Q&A content, structured data, citation consistency — is specifically designed for how AI engines read and summarise information.` },
+  { q: `What if I don't have a website yet?`, a: `A website gets built as part of the service where needed. If the current site is too outdated to optimise effectively — old platform, thin content, no local signals — a new one goes live fast, built for AI search from day one. The "Website That Sells" service covers that build. Both can run together.` },
+  { q: `Will this work for my specific location and suburb?`, a: `Yes, and location specificity is exactly the point. A generic page that says "plumber in Brisbane" competes with every other plumber in Brisbane. Content written for "emergency plumber Paddington Brisbane" or "after-hours plumber Toowoomba" targets the specific queries where AI engines are looking for a local recommendation. Suburb-level and service-type-specific content is what makes the difference — and that's what gets built.` },
+];
+
 ---
 
 <BaseLayout
@@ -57,7 +66,7 @@ const features = [
     <div style="position:relative;max-width:1100px;margin:0 auto;">
       <div style="max-width:900px;margin:0 auto;text-align:center;">
         <span class="label">Show Up on ChatGPT</span>
-        <h1 style="font-size:clamp(40px,6vw,80px);font-weight:800;color:#0A0A0B;margin:0 0 24px;line-height:0.98;letter-spacing:-0.045em;">
+        <h1 style="font-size:clamp(30px,6vw,80px);font-weight:800;color:#0A0A0B;margin:0 0 24px;line-height:1.05;letter-spacing:-0.04em;text-wrap:balance;">
           When your next client asks <span style="color:#14746F;">ChatGPT</span> who to call, your name comes up.
         </h1>
         <p style="font-size:clamp(17px,1.6vw,20px);color:#4A4A4E;line-height:1.55;margin:0 auto 36px;max-width:680px;font-weight:400;letter-spacing:-0.01em;">
@@ -117,7 +126,7 @@ const features = [
       <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 56px;">
         <span class="label">What's included</span>
         <h2 style="font-size:clamp(30px,4.5vw,50px);color:#0A0A0B;margin:0;line-height:1.05;letter-spacing:-0.035em;">
-          Everything it takes to become<br/>the business <span style="color:#14746F;">AI recommends.</span>
+          Everything it takes to become<br class="br-desktop"/> the business <span style="color:#14746F;">AI recommends.</span>
         </h2>
       </div>
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;" class="feat-grid-4">
@@ -184,6 +193,16 @@ const features = [
       </div>
     </div>
   </section>
+
+
+  <!-- ═══ FAQ ═══ -->
+  <FAQSection
+    kicker="Frequently asked"
+    heading="Show Up on ChatGPT"
+    accent="questions answered"
+    faqs={faqs}
+    background="white"
+  />
 
   <UniversalBottom
     service="ai_search_optimisation"

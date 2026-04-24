@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import UniversalBottom from '../../components/UniversalBottom.astro';
+import FAQSection from '../../components/FAQSection.astro';
 import Icon from '../../components/Icon.astro';
 
 const pains = [
@@ -32,6 +33,14 @@ const proofStats = [
   { n: '24%',   l: 'Lead-to-sales conversion',   sub: "The percentage of qualified leads that converted to signed contracts when pipeline tracking and conversion feedback were fully connected." },
   { n: '-17%',  l: 'Cost per lead vs target',    sub: "Cost per lead came in 17% below the target benchmark, with lead quality simultaneously improving as conversion data fed back into the platform." },
 ];
+const faqs = [
+  { q: `What's the minimum ad spend you work with?`, a: `The minimum that makes economic sense for Google Search or Meta lead generation campaigns is around $1,500–$2,000 per month in ad spend. Below that, there isn't enough data volume for the conversion feedback loop to optimise effectively. The management fee is separate from the ad spend. The strategy call confirms whether the budget, the service, and the cost per acquisition target are aligned before anything starts.` },
+  { q: `How is this different from what my current agency does?`, a: `Most agencies close the loop at the click or the lead form submission. This service closes it at the sale. When a lead becomes a paying customer, that outcome gets sent back to Google and Meta automatically. The algorithm learns what a real customer looks like for your business — not just who fills in a form. The difference shows up in lead quality over time: more leads that close, fewer leads that waste the sales team's time. Most agencies can't do this because they don't have access to the CRM where the sale happens. This service connects both ends.` },
+  { q: `How long until I see results from Google Ads?`, a: `Paid ads generate leads from the first week the campaigns run. Lead quality takes longer to improve — the conversion feedback loop needs 30 to 60 days of sale data before the algorithm starts meaningfully optimising for customer quality rather than just lead volume. The first 30 days is the data-gathering phase. Optimisation accelerates from there.` },
+  { q: `Do you manage the ads ongoing or just set them up?`, a: `Ongoing. The campaigns get set up and then managed every month — reviewing which ads are working, which audiences are converting, shifting budget toward what's performing, pausing what isn't. The monthly optimisation cycle is where the improvement happens. Set-and-forget paid media is how agencies charge management fees without doing management work. This service includes both the setup and the monthly cycle.` },
+  { q: `What if my landing page is on my existing website?`, a: `If the existing landing page converts well, it stays. If it doesn't — slow load speed, unclear offer, weak form, no trust signals — it gets rebuilt or a dedicated high-converting landing page gets created alongside it. The ad spend doesn't run until the page where leads land is ready to convert them. Sending paid traffic to a weak page wastes every dollar the campaign earns.` },
+];
+
 ---
 
 <BaseLayout
@@ -63,8 +72,8 @@ const proofStats = [
     <div style="position:relative;max-width:1100px;margin:0 auto;">
       <div style="max-width:880px;margin:0 auto;text-align:center;">
         <span class="label">Qualified Leads</span>
-        <h1 style="font-size:clamp(40px,6vw,84px);font-weight:800;color:#0A0A0B;margin:0 0 24px;line-height:0.98;letter-spacing:-0.045em;">
-          Most agencies count clicks.<br/>You need <span style="color:#14746F;">closed jobs.</span>
+        <h1 style="font-size:clamp(30px,6vw,84px);font-weight:800;color:#0A0A0B;margin:0 0 24px;line-height:1.05;letter-spacing:-0.04em;text-wrap:balance;">
+          Most agencies count clicks.<br class="br-desktop"/> You need <span style="color:#14746F;">closed jobs.</span>
         </h1>
         <p style="font-size:clamp(17px,1.6vw,20px);color:#4A4A4E;line-height:1.55;margin:0 auto 36px;max-width:680px;font-weight:400;letter-spacing:-0.01em;">
           A complete lead generation system, from ad to analytics to closed sale, that gets smarter every week and finds better customers over time.
@@ -102,7 +111,7 @@ const proofStats = [
       <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 64px;">
         <span class="label">How it works</span>
         <h2 style="font-size:clamp(30px,4.5vw,50px);color:#0A0A0B;margin:0;line-height:1.05;letter-spacing:-0.035em;">
-          The full cycle, from first ad<br/>to <span style="color:#14746F;">closed sale.</span>
+          The full cycle, from first ad<br class="br-desktop"/> to <span style="color:#14746F;">closed sale.</span>
         </h2>
       </div>
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;" class="steps-grid-4">
@@ -123,7 +132,7 @@ const proofStats = [
       <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 56px;">
         <span class="label">What's included</span>
         <h2 style="font-size:clamp(30px,4.5vw,50px);color:#0A0A0B;margin:0;line-height:1.05;letter-spacing:-0.035em;">
-          Every part of the system.<br/><span style="color:#14746F;">Nothing left disconnected.</span>
+          Every part of the system.<br class="br-desktop"/><span style="color:#14746F;">Nothing left disconnected.</span>
         </h2>
       </div>
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;" class="feat-grid-4">
@@ -147,7 +156,7 @@ const proofStats = [
       <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 56px;">
         <span style="display:inline-flex;align-items:center;gap:10px;font-family:'Inter',sans-serif;font-weight:600;font-size:12.5px;letter-spacing:0.12em;text-transform:uppercase;color:#99E2B4;margin-bottom:24px;padding:7px 14px;background:rgba(153,226,180,0.14);border:1px solid rgba(153,226,180,0.25);border-radius:99px;">Proof</span>
         <h2 style="font-size:clamp(30px,4.5vw,50px);color:white;margin:0;line-height:1.05;letter-spacing:-0.035em;">
-          What the numbers look like<br/>when the full system runs.
+          What the numbers look like<br class="br-desktop"/> when the full system runs.
         </h2>
       </div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;" class="proof-grid">
@@ -161,6 +170,16 @@ const proofStats = [
       </div>
     </div>
   </section>
+
+
+  <!-- ═══ FAQ ═══ -->
+  <FAQSection
+    kicker="Frequently asked"
+    heading="Qualified Leads"
+    accent="questions answered"
+    faqs={faqs}
+    background="white"
+  />
 
   <UniversalBottom
     service="qualified_leads"

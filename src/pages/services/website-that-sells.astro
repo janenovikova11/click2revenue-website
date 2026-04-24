@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import UniversalBottom from '../../components/UniversalBottom.astro';
+import FAQSection from '../../components/FAQSection.astro';
 import Icon from '../../components/Icon.astro';
 
 const pains = [
@@ -30,6 +31,14 @@ const features = [
   { icon: 'browser',  name: 'Content Direction',                desc: "Headline copy, page structure, and offer framing provided for every page. The copy gets reviewed and refined before launch." },
   { icon: 'sparkle',  name: 'Ongoing Changes, No Revision Limits',desc: "The site doesn't freeze at launch. Pricing changes, new services, seasonal offers — updated fast using AI tools. No two-revision cap." },
 ];
+const faqs = [
+  { q: `How can you build a website in a week — won't it be low quality?`, a: `The speed comes from AI tools that handle the heavy lifting — layout generation, content formatting, code output. What used to take a developer four weeks of manual work takes a fraction of the time. The strategy and structure still get done properly before build starts — the brief, the conversion flow, the offer hierarchy. Speed doesn't mean shortcuts. It means the slow parts got automated so the thinking parts get the time they deserve.` },
+  { q: `Who writes the copy for the website?`, a: `The copy gets provided as part of the service — headline, offer framing, page structure, calls to action. It gets written specifically for the business and the target customer, not pulled from a template. If the business already has copy it's happy with, that gets used. If not, it gets written fresh. Either way, the copy gets reviewed before build starts.` },
+  { q: `What happens if I need changes after launch?`, a: `Changes happen fast. There's no two-revision cap and no waiting weeks for something simple. Pricing updates, new service pages, seasonal offers, location additions — handled as they come up. The tools that made the build fast make ongoing changes fast too. The site stays current because it can.` },
+  { q: `Does the website include hosting?`, a: `Yes. Hosting gets configured as part of the build — domain connected, SSL certificate active, fast load times configured. The hosting cost is included in the ongoing monthly fee. Nothing to set up separately.` },
+  { q: `Can you work with my existing domain name?`, a: `Yes. The existing domain gets pointed to the new site. If the old site is staying live somewhere else temporarily (for language/market separation, for example), a subdomain or separate setup gets organised. Domain transfer and DNS configuration are handled during the go-live process.` },
+];
+
 ---
 
 <BaseLayout
@@ -121,7 +130,7 @@ const features = [
       <div class="reveal" style="text-align:center;max-width:720px;margin:0 auto 56px;">
         <span class="label">What's included</span>
         <h2 style="font-size:clamp(30px,4.5vw,50px);color:#0A0A0B;margin:0;line-height:1.05;letter-spacing:-0.035em;">
-          Everything a converting website<br/>needs. <span style="color:#14746F;">Nothing disconnected.</span>
+          Everything a converting website<br class="br-desktop"/> needs. <span style="color:#14746F;">Nothing disconnected.</span>
         </h2>
       </div>
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;" class="feat-grid-4">
@@ -188,6 +197,16 @@ const features = [
       </div>
     </div>
   </section>
+
+
+  <!-- ═══ FAQ ═══ -->
+  <FAQSection
+    kicker="Frequently asked"
+    heading="A Website That Sells"
+    accent="questions answered"
+    faqs={faqs}
+    background="white"
+  />
 
   <UniversalBottom
     service="website_that_sells"

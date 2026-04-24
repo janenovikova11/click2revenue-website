@@ -45,7 +45,31 @@ h1, h2, h3, h4, h5, h6 {
   color: #0A0A0B;
   letter-spacing: -0.025em;
   line-height: 1.05;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: none;
 }
+
+p, li { overflow-wrap: break-word; word-break: normal; hyphens: none; }
+
+/* Hard line-breaks inside headlines that should disappear on small screens.
+   Usage: <br class="br-desktop"/>  -> line break on desktop, space on mobile.  */
+.br-desktop { display: inline; }
+@media (max-width: 640px) {
+  .br-desktop { display: none; }
+}
+
+/* Avoid single-character / single-word orphans on small viewports */
+@media (max-width: 640px) {
+  h1, h2, h3 { letter-spacing: -0.02em !important; }
+  h1 { line-height: 1.08 !important; }
+  h2 { line-height: 1.12 !important; }
+  body { font-size: 16px; }
+}
+
+/* Kill 300ms tap delay on iOS */
+a, button, input[type=submit] { touch-action: manipulation; }
 
 .btn-primary {
   display: inline-flex;

@@ -1,7 +1,27 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import LeadForm from '../components/LeadForm.astro';
+import FAQSection from '../components/FAQSection.astro';
 import Icon from '../components/Icon.astro';
+
+const homepageFaqs = [
+  { q: 'What types of businesses do you work with?',
+    a: 'Service businesses in Australia and the United States — tradies, commercial cleaning operators, hospitality businesses, financial advisers, accountants, industrial services companies, and dental and aesthetic practices. The common thread is that they sell a service (not a physical product), they rely on lead generation or local discovery to win clients, and they have a sales process that involves follow-up, quoting, or relationship management. If that sounds like your business, it fits.' },
+  { q: 'Do I need to sign a long-term contract?',
+    a: "No. All services are month-to-month after the initial build period (typically 90 days). The 90-day build period is when the system gets set up, configured, and launched — that work is non-refundable once it starts. After that, no lock-in. If it's not working for you, 30 days notice and you're out. Most clients stay because the system keeps improving, not because a contract forces them to." },
+  { q: 'How quickly does it start?',
+    a: 'Work begins within 5 business days of signing and first payment. Most systems — AI Sales Automation, websites, lead generation campaigns — go live within 14 days of kickoff. AI search optimisation content starts going live in the first two weeks. Timelines depend on how quickly assets and information get provided from your end.' },
+  { q: 'Do you work with businesses in both Australia and the US?',
+    a: 'Yes. The team covers AU and US business hours. Australian clients are based primarily in Queensland and South East Australia. US clients are spread across multiple states. The systems, the strategy, and the copy all get adapted to the relevant market — an Australian tradie and a US home services company need different offers, different ad copy, and different local signals. Both are handled.' },
+  { q: 'What does "AI" actually mean in your services — is this real AI or just a buzzword?',
+    a: "Real AI. The voice bots use large language models trained on your business's services, FAQs, and pricing to hold genuine conversations — not pre-recorded menus. The SMS bots qualify leads through real back-and-forth exchanges. The conversion feedback loop sends real sales outcome data back to Google and Meta so their machine learning models improve targeting. The AI search optimisation creates content that gets cited by ChatGPT and Google AI — not through tricks, but through structured, authoritative, locally-specific content. The word is used because the underlying technology is AI, not because it sounds good." },
+  { q: 'How is this different from a regular marketing agency?',
+    a: "Most agencies optimise for the metrics inside the ad platform — impressions, clicks, cost per lead. The loop closes there. This service closes the loop at the sale. Sales outcome data goes back to the ad platform. The CRM tracks every lead from first click to closed job. The AI system learns over time. The difference is visible in the reporting: not just cost per lead, but cost per closed sale, lead quality score, and pipeline value. Most agencies can't show you those numbers because they never built the tracking to get them." },
+  { q: 'How much does it cost?',
+    a: "Pricing depends on the service, the complexity of the setup, and the market. The free strategy call is how the right scope and price get determined — there's no point quoting before understanding the business. What most clients find: the system replaces $1,000 to $2,500 per month of existing software subscriptions while doing more. The conversation about cost makes more sense after the audit shows what's currently leaking." },
+  { q: 'What happens on the free strategy call?',
+    a: 'A 30-minute call with a real person, not a sales script. Your current setup gets audited live — ad accounts, lead tracking, CRM, website conversion rate, AI search visibility. The gaps become clear. At the end of the call, you leave with a specific picture of what\'s broken and what the highest-leverage fix is, whether you work with us or not. No pitch deck. No obligation.' },
+];
 
 const services = [
   { icon: 'zap',       name: 'AI Sales Automation',            desc: 'Every lead followed up. Every call answered. From first enquiry to signed contract, your sales process runs on AI.',                      href: '/services/ai-sales-automation' },
@@ -82,9 +102,9 @@ const janeStats = [
       </div>
 
       <div style="max-width:920px;margin:0 auto;text-align:center;" class="reveal">
-        <h1 style="font-size:clamp(38px,6.2vw,84px);font-weight:800;color:#0A0A0B;line-height:0.98;letter-spacing:-0.045em;margin:0 0 24px;">
-          Every missed call is a<br/>
-          <span style="color:#14746F;">sale your competitor</span><br/>
+        <h1 style="font-size:clamp(34px,6.2vw,84px);font-weight:800;color:#0A0A0B;line-height:1.02;letter-spacing:-0.04em;margin:0 0 24px;text-wrap:balance;">
+          Every missed call is a<br class="br-desktop"/>
+          <span style="color:#14746F;"> sale your competitor </span><br class="br-desktop"/>
           just made.
         </h1>
         <p style="font-size:clamp(16px,1.5vw,19px);color:#4A4A4E;line-height:1.55;margin:0 auto 36px;max-width:620px;font-weight:400;letter-spacing:-0.01em;">
@@ -305,8 +325,8 @@ const janeStats = [
   <section style="background:#F6F5F0;padding:110px 24px;">
     <div style="max-width:1100px;margin:0 auto;">
       <div class="reveal" style="max-width:760px;margin-bottom:64px;">
-        <h2 style="font-size:clamp(36px,5vw,64px);color:#0A0A0B;margin:0;line-height:1.0;letter-spacing:-0.035em;">
-          This is the <span style="color:#14746F;">maths</span><br/>nobody wants to do.
+        <h2 style="font-size:clamp(30px,5vw,64px);color:#0A0A0B;margin:0;line-height:1.08;letter-spacing:-0.03em;text-wrap:balance;">
+          This is the <span style="color:#14746F;">maths</span><br class="br-desktop"/> nobody wants to do.
         </h2>
       </div>
 
@@ -529,8 +549,8 @@ const janeStats = [
     <div style="max-width:1200px;margin:0 auto;">
       <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 56px;">
         <span class="label">Industries</span>
-        <h2 style="font-size:clamp(32px,4.8vw,56px);color:#0A0A0B;margin:0;line-height:1.05;letter-spacing:-0.035em;">
-          Built for the businesses<br/>that keep things <span style="color:#14746F;">running.</span>
+        <h2 style="font-size:clamp(28px,4.8vw,56px);color:#0A0A0B;margin:0;line-height:1.1;letter-spacing:-0.03em;text-wrap:balance;">
+          Built for the businesses<br class="br-desktop"/> that keep things <span style="color:#14746F;">running.</span>
         </h2>
       </div>
       <div class="industry-grid">
@@ -714,6 +734,15 @@ const janeStats = [
       </div>
     </div>
   </section>
+
+  <!-- ═══════════════════════════════════════════ FAQ -->
+  <FAQSection
+    kicker="Frequently asked"
+    heading="The questions we hear"
+    accent="before every call"
+    faqs={homepageFaqs}
+    background="white"
+  />
 
   <!-- ═══════════════════════════════════════════ FORM -->
   <div id="full-form-anchor"></div>

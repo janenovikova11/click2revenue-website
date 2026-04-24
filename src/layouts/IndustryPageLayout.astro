@@ -87,8 +87,8 @@ const breadcrumbSchema = {
     <div class="h-hero-inner">
       <span class="h-tag">{tag}</span>
       <h1 class="h-title">
-        {heroHeadline}<br/>
-        <span class="h-accent">{heroAccent}</span>
+        {heroHeadline}<br class="br-desktop"/>
+        <span class="h-accent"> {heroAccent}</span>
       </h1>
       <p class="h-sub">{heroSub}</p>
       <div class="h-cta">
@@ -293,13 +293,14 @@ const breadcrumbSchema = {
     margin-bottom: 36px;
   }
   .h-title {
-    font-size: clamp(40px, 5.8vw, 76px);
+    font-size: clamp(32px, 5.8vw, 76px);
     font-weight: 800;
     color: #0A0A0B;
-    line-height: 1.04;
-    letter-spacing: -0.045em;
+    line-height: 1.06;
+    letter-spacing: -0.04em;
     margin: 0 auto 28px;
     max-width: 920px;
+    text-wrap: balance;
   }
   .h-sub {
     font-size: clamp(17px, 1.4vw, 20px);
@@ -629,21 +630,36 @@ const breadcrumbSchema = {
     .h-stack-grid { grid-template-columns: 1fr; gap: 32px; }
   }
   @media (max-width: 700px) {
-    .h-hero { padding: 110px 20px 72px !important; }
-    .h-pain, .h-meet, .h-testimonial { padding: 80px 20px !important; }
-    .h-title { font-size: 36px !important; }
-    .h-chips { gap: 8px; margin-bottom: 56px; }
+    .h-hero { padding: 100px 18px 64px !important; }
+    .h-pain, .h-meet, .h-testimonial { padding: 72px 18px !important; }
+    .h-title { font-size: clamp(28px, 7vw, 38px) !important; line-height: 1.12 !important; letter-spacing: -0.025em !important; }
+    .h-sub { font-size: 16px !important; line-height: 1.55 !important; }
+    .h-tag { font-size: 11px; margin-bottom: 24px; }
+    .h-chips { gap: 8px; margin-bottom: 48px; }
     .h-chip { padding: 8px 12px; }
     .h-chip-label { font-size: 12px; }
-    .h-hero-photo-wrap { aspect-ratio: 4/3; border-radius: 16px; }
-    .h-pain-item { grid-template-columns: 48px 1fr; gap: 18px; padding: 28px 0; }
-    .h-pain-num { font-size: 30px; }
-    .h-pain-title { font-size: 20px; }
-    .h-pain-text { font-size: 15px; }
-    .h-empathy { font-size: 18px; padding-left: 20px; }
-    .h-meet-lead { font-size: 16px; }
-    .h-ba-col { padding: 16px 0; }
-    .h-stack-grid { gap: 24px; }
-    .h-testi-card { padding: 36px 28px; }
+    .h-hero-photo-wrap { aspect-ratio: 4/3; border-radius: 16px; margin-bottom: 32px; }
+    .h-trust { font-size: 12px; line-height: 1.8; }
+    .h-sep { margin: 0 4px; }
+    .h-pain-item { grid-template-columns: 40px 1fr; gap: 14px; padding: 24px 0; }
+    .h-pain-num { font-size: 26px; padding-top: 2px; }
+    .h-pain-title { font-size: 18px; line-height: 1.3; }
+    .h-pain-text { font-size: 14.5px; line-height: 1.7; }
+    .h-pain-h2 { font-size: clamp(26px, 6vw, 34px) !important; margin-bottom: 48px !important; line-height: 1.15 !important; }
+    .h-empathy { font-size: 16px; padding-left: 18px; line-height: 1.6; }
+    .h-meet-h2 { font-size: clamp(26px, 6vw, 36px) !important; line-height: 1.1 !important; }
+    .h-meet-lead { font-size: 15.5px; line-height: 1.7; }
+    .h-ba-col { padding: 14px 0; }
+    .h-stack-grid { gap: 22px; }
+    .h-stack-item { grid-template-columns: 44px 1fr; gap: 16px; }
+    .h-testi-card { padding: 32px 22px; border-radius: 18px; }
+    .h-testi-quote { font-size: 18px; line-height: 1.55; }
+    .h-testi-quote-mark { width: 48px; height: 38px; top: 28px; right: 28px; }
+    .h-meet-close { font-size: 15.5px; line-height: 1.65; }
+  }
+  @media (max-width: 380px) {
+    .h-hero { padding: 92px 14px 56px !important; }
+    .h-pain, .h-meet, .h-testimonial { padding: 60px 14px !important; }
+    .h-title { font-size: 26px !important; }
   }
 </style>

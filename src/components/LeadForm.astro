@@ -12,6 +12,11 @@ const {
   service = 'general_enquiry',
   source = 'main_form',
 } = Astro.props;
+
+// Turnstile site key is injected at build time if PUBLIC_TURNSTILE_SITE_KEY is defined.
+// If empty, the widget is not rendered and the form submits without a token (server
+// also skips verification in that case, same pattern as GHL_API_KEY).
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
 ---
 
 <section class="leadform-section" style="background:#FAFAF7;padding:120px 24px;position:relative;overflow:hidden;">
@@ -20,46 +25,66 @@ const {
   <div style="position:relative;max-width:900px;margin:0 auto;">
     <div class="reveal" style="text-align:center;margin-bottom:48px;">
       <span class="label">Get started</span>
-      <h2 style="font-size:clamp(32px,4.5vw,52px);color:#0A0A0B;margin:0 0 16px;line-height:1.05;letter-spacing:-0.03em;">{headline}</h2>
+      <h2 style="font-size:clamp(28px,4.5vw,52px);color:#0A0A0B;margin:0 0 16px;line-height:1.1;letter-spacing:-0.025em;text-wrap:balance;">{headline}</h2>
       <p style="font-size:17px;color:#4A4A4E;line-height:1.6;margin:0 auto;max-width:540px;font-weight:400;letter-spacing:-0.005em;">{subheadline}</p>
     </div>
 
     <div class="reveal form-wrapper" style="background:white;border-radius:24px;padding:48px;border:1px solid #EAEAEC;box-shadow:0 12px 40px rgba(10,10,11,0.06);">
-      <form id="lead-form">
+      <form id="lead-form" novalidate>
         <input type="hidden" name="service" value={service} />
         <input type="hidden" name="source" value={source} />
 
         <div style="margin-bottom:16px;">
-          <label style="display:block;font-size:12.5px;font-weight:600;color:#0A0A0B;margin-bottom:8px;letter-spacing:-0.005em;">Full name</label>
-          <input name="name" required placeholder="Jane Novikova" class="form-input"/>
+          <label for="lf-name" style="display:block;font-size:12.5px;font-weight:600;color:#0A0A0B;margin-bottom:8px;letter-spacing:-0.005em;">Full name</label>
+          <input id="lf-name" name="name" required placeholder="Jane Novikova" class="form-input" autocomplete="name"/>
+          <p class="form-error" data-error-for="name" hidden></p>
         </div>
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;" class="form-row">
           <div>
-            <label style="display:block;font-size:12.5px;font-weight:600;color:#0A0A0B;margin-bottom:8px;letter-spacing:-0.005em;">Business email</label>
-            <input name="email" type="email" required placeholder="you@yourbusiness.com" class="form-input"/>
+            <label for="lf-email" style="display:block;font-size:12.5px;font-weight:600;color:#0A0A0B;margin-bottom:8px;letter-spacing:-0.005em;">Business email</label>
+            <input id="lf-email" name="email" type="email" required placeholder="you@yourbusiness.com" class="form-input" autocomplete="email" inputmode="email"/>
+            <p class="form-error" data-error-for="email" hidden></p>
           </div>
           <div>
-            <label style="display:block;font-size:12.5px;font-weight:600;color:#0A0A0B;margin-bottom:8px;letter-spacing:-0.005em;">Phone</label>
-            <input name="phone" type="tel" required placeholder="+61 4xx xxx xxx" class="form-input"/>
+            <label for="lf-phone" style="display:block;font-size:12.5px;font-weight:600;color:#0A0A0B;margin-bottom:8px;letter-spacing:-0.005em;">Phone</label>
+            <input id="lf-phone" name="phone" type="tel" required placeholder="+61 4xx xxx xxx or +1 xxx xxx xxxx" class="form-input" autocomplete="tel" inputmode="tel"/>
+            <p class="form-error" data-error-for="phone" hidden></p>
           </div>
         </div>
 
         <div style="margin-bottom:24px;">
-          <label style="display:block;font-size:12.5px;font-weight:600;color:#0A0A0B;margin-bottom:8px;letter-spacing:-0.005em;">What's your biggest challenge? <span style="color:#8A8A90;font-weight:400;">(optional)</span></label>
-          <textarea name="message" rows="3" placeholder="Quick note on what you'd like to fix" class="form-input" style="resize:vertical;min-height:90px;"></textarea>
+          <label for="lf-message" style="display:block;font-size:12.5px;font-weight:600;color:#0A0A0B;margin-bottom:8px;letter-spacing:-0.005em;">What's your biggest challenge? <span style="color:#8A8A90;font-weight:400;">(optional)</span></label>
+          <textarea id="lf-message" name="message" rows="3" placeholder="Quick note on what you'd like to fix" class="form-input" style="resize:vertical;min-height:90px;"></textarea>
         </div>
 
-        <button type="submit" id="form-submit" style="width:100%;padding:16px;background:#0A0A0B;color:white;font-family:'Inter',sans-serif;font-weight:600;font-size:15px;border:none;border-radius:10px;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;justify-content:center;gap:8px;letter-spacing:-0.005em;"
-          onmouseover="this.style.background='#14746F'; this.style.transform='translateY(-1px)'; this.style.boxShadow='0 8px 24px rgba(20,116,111,0.25)';"
-          onmouseout="this.style.background='#0A0A0B'; this.style.transform=''; this.style.boxShadow='';">
-          Send my details
+        <label for="lf-consent" class="form-consent">
+          <input id="lf-consent" name="consent" type="checkbox" required/>
+          <span>
+            I agree to the
+            <a href="/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>
+            and
+            <a href="/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a>,
+            and to being contacted by Click2Revenue about my enquiry.
+          </span>
+        </label>
+        <p class="form-error" data-error-for="consent" hidden></p>
+
+        {turnstileSiteKey && (
+          <div class="form-turnstile-wrap">
+            <div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-theme="light" data-size="flexible"></div>
+            <p class="form-error" data-error-for="turnstile" hidden></p>
+          </div>
+        )}
+
+        <button type="submit" id="form-submit" class="form-submit-btn">
+          <span id="form-submit-label">Send my details</span>
           <Icon name="arrow-right" size={16} />
         </button>
 
         <div style="margin-top:20px;display:flex;align-items:center;justify-content:center;gap:8px;">
           <Icon name="shield" size={14} stroke="#14746F" />
-          <p style="margin:0;font-size:12.5px;color:#8A8A90;">Your data is safe. Our AI replies instantly.</p>
+          <p style="margin:0;font-size:12.5px;color:#8A8A90;text-align:center;">Your data is safe. Our AI replies instantly.</p>
         </div>
       </form>
 
@@ -72,7 +97,7 @@ const {
       </div>
     </div>
 
-    <div style="text-align:center;margin-top:32px;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;">
+    <div class="leadform-call-row">
       <span style="font-size:13px;color:#8A8A90;">Prefer to talk?</span>
       <a href="tel:+19252909985" style="color:#0A0A0B;text-decoration:none;font-weight:500;font-size:14px;display:inline-flex;align-items:center;gap:6px;letter-spacing:-0.005em;">
         <Icon name="phone" size={13} stroke="#14746F" /> USA +1 925 290 9985
@@ -84,6 +109,10 @@ const {
   </div>
 </section>
 
+{turnstileSiteKey && (
+  <script is:inline async defer src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
+)}
+
 <style>
   .form-input {
     width: 100%;
@@ -91,10 +120,10 @@ const {
     border: 1px solid #EAEAEC;
     border-radius: 10px;
     font-family: 'Inter', sans-serif;
-    font-size: 14.5px;
+    font-size: 15px;
     color: #0A0A0B;
     outline: none;
-    transition: all 0.2s;
+    transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
     background: #FAFAF7;
     letter-spacing: -0.005em;
   }
@@ -104,57 +133,227 @@ const {
     background: white;
   }
   .form-input::placeholder { color: #B0B0B5; }
+  .form-input.input-invalid {
+    border-color: #D14343;
+    box-shadow: 0 0 0 3px rgba(209,67,67,0.12);
+  }
+  .form-error {
+    margin: 6px 0 0;
+    font-size: 12.5px;
+    color: #D14343;
+    line-height: 1.4;
+  }
+  .form-error[hidden] { display: none; }
+
+  .form-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 0 0 18px;
+    font-size: 13px;
+    line-height: 1.55;
+    color: #4A4A4E;
+    cursor: pointer;
+    letter-spacing: -0.005em;
+  }
+  .form-consent input[type="checkbox"] {
+    flex-shrink: 0;
+    margin-top: 3px;
+    width: 18px;
+    height: 18px;
+    accent-color: #14746F;
+    cursor: pointer;
+  }
+  .form-consent a { color: #14746F; text-decoration: underline; }
+  .form-consent a:hover { color: #0A0A0B; }
+
+  .form-turnstile-wrap {
+    margin: 0 0 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .form-submit-btn {
+    width: 100%;
+    padding: 16px;
+    background: #0A0A0B;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    letter-spacing: -0.005em;
+  }
+  .form-submit-btn:hover:not(:disabled) {
+    background: #14746F;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(20,116,111,0.25);
+  }
+  .form-submit-btn:disabled { opacity: 0.7; cursor: wait; }
+
+  .leadform-call-row {
+    text-align: center;
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px 24px;
+    flex-wrap: wrap;
+  }
 
   @media (max-width: 600px) {
-    .leadform-section { padding: 80px 20px !important; }
+    .leadform-section { padding: 72px 16px !important; }
     .form-row { grid-template-columns: 1fr !important; }
-    .form-wrapper { padding: 28px 24px !important; }
+    .form-wrapper { padding: 28px 22px !important; border-radius: 20px !important; }
+    .form-consent { font-size: 12.5px; }
+    .leadform-call-row { gap: 10px 18px; margin-top: 24px; }
+    .leadform-call-row > * { font-size: 13px !important; }
+  }
+  @media (max-width: 380px) {
+    .leadform-section { padding: 60px 12px !important; }
+    .form-wrapper { padding: 24px 18px !important; }
   }
 </style>
 
 <script is:inline>
-  document.getElementById('lead-form')?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const form    = e.target;
+  (function () {
+    const form    = document.getElementById('lead-form');
+    if (!form) return;
     const submit  = document.getElementById('form-submit');
+    const submitLabel = document.getElementById('form-submit-label');
     const success = document.getElementById('form-success');
 
-    submit.disabled = true;
-    submit.style.opacity = '0.7';
-    submit.innerHTML = 'Sending...';
-
-    const fd = new FormData(form);
-    const data = Object.fromEntries(fd.entries());
-
-    try {
-      // Submit directly to Go High Level form endpoint (no-cors, optimistic success).
-      // Server-side submission will be wired in during Cloudflare Pages deployment
-      // using the GHL API key stored as an environment variable.
-      const ghlData = new FormData();
-      ghlData.set('full_name', String(data.name || ''));
-      ghlData.set('email',     String(data.email || ''));
-      ghlData.set('phone',     String(data.phone || ''));
-      ghlData.set('message',   String(data.message || ''));
-      ghlData.set('service',   String(data.service || ''));
-      ghlData.set('source',    String(data.source || ''));
-
-      await fetch('https://link.click2revenue.com/widget/form/LsXeOkHaLLRXiJd7qQ7x/submit', {
-        method: 'POST',
-        mode: 'no-cors',
-        body: ghlData,
-      }).catch(() => { /* no-cors: ignore */ });
-
-      form.style.display = 'none';
-      success.style.display = 'block';
-
-      setTimeout(() => {
-        window.location.href = '/thank-you?service=' + encodeURIComponent(String(data.service)) + '&source=' + encodeURIComponent(String(data.source));
-      }, 1200);
-    } catch (err) {
-      submit.disabled = false;
-      submit.style.opacity = '1';
-      submit.innerHTML = 'Try again';
-      alert('Sorry, something went wrong. Please try again or call us directly.');
+    // AU: 10 digits starting with 0, or +61 + 9 digits (starting with 2-9 or 4 for mobile).
+    // US: 10 digits, or +1 + 10 digits.
+    // Strategy: strip all non-digits, then accept:
+    //   - 10 digits starting with 0      -> AU local
+    //   - 11 digits starting with 61     -> AU international (+61 stripped)
+    //   - 10 digits starting with 2-9    -> US local
+    //   - 11 digits starting with 1      -> US international (+1 stripped)
+    function validatePhone(raw) {
+      const digits = String(raw || '').replace(/\D/g, '');
+      if (!digits) return 'Please enter your phone number.';
+      if (digits.length < 10) return 'Phone number looks too short. AU numbers are 10 digits (e.g. 04xx xxx xxx).';
+      if (digits.length > 15) return 'Phone number looks too long. Please check and try again.';
+      // AU local: 0XXXXXXXXX
+      if (digits.length === 10 && digits.startsWith('0')) return null;
+      // AU +61 international: 61XXXXXXXXX (11 digits)
+      if (digits.length === 11 && digits.startsWith('61')) return null;
+      // US local: 10 digits starting 2-9
+      if (digits.length === 10 && /^[2-9]/.test(digits)) return null;
+      // US +1 international: 1XXXXXXXXXX
+      if (digits.length === 11 && digits.startsWith('1')) return null;
+      return 'That phone number doesn’t match an AU or US format. Try +61 4xx xxx xxx or +1 xxx xxx xxxx.';
     }
-  });
+
+    function validateEmail(raw) {
+      const v = String(raw || '').trim();
+      if (!v) return 'Please enter your email.';
+      // Simple, permissive check — server does the real parsing.
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return 'That email address doesn’t look right.';
+      return null;
+    }
+
+    function validateName(raw) {
+      const v = String(raw || '').trim();
+      if (v.length < 2) return 'Please enter your full name.';
+      return null;
+    }
+
+    function showError(fieldName, message) {
+      const input = form.querySelector('[name="' + fieldName + '"]');
+      const errEl = form.querySelector('[data-error-for="' + fieldName + '"]');
+      if (input && input.classList) input.classList.add('input-invalid');
+      if (errEl) { errEl.textContent = message; errEl.hidden = false; }
+    }
+    function clearError(fieldName) {
+      const input = form.querySelector('[name="' + fieldName + '"]');
+      const errEl = form.querySelector('[data-error-for="' + fieldName + '"]');
+      if (input && input.classList) input.classList.remove('input-invalid');
+      if (errEl) { errEl.textContent = ''; errEl.hidden = true; }
+    }
+
+    ['name', 'email', 'phone'].forEach(function (n) {
+      const el = form.querySelector('[name="' + n + '"]');
+      if (el) el.addEventListener('input', function () { clearError(n); });
+    });
+    const consentEl = form.querySelector('[name="consent"]');
+    if (consentEl) consentEl.addEventListener('change', function () { clearError('consent'); });
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const fd = new FormData(form);
+      const data = Object.fromEntries(fd.entries());
+
+      // Client-side validation
+      let hasError = false;
+      const nameErr = validateName(data.name);
+      const emailErr = validateEmail(data.email);
+      const phoneErr = validatePhone(data.phone);
+      if (nameErr)  { showError('name', nameErr);   hasError = true; }
+      if (emailErr) { showError('email', emailErr); hasError = true; }
+      if (phoneErr) { showError('phone', phoneErr); hasError = true; }
+      if (!consentEl || !consentEl.checked) {
+        showError('consent', 'Please agree to the Privacy Policy and Terms before submitting.');
+        hasError = true;
+      }
+
+      // Turnstile token (if widget is present)
+      const tsInput = form.querySelector('input[name="cf-turnstile-response"]');
+      const tsToken = tsInput ? String(tsInput.value || '') : '';
+      const tsWidget = form.querySelector('.cf-turnstile');
+      if (tsWidget && !tsToken) {
+        showError('turnstile', 'Please complete the human check above.');
+        hasError = true;
+      }
+
+      if (hasError) {
+        // Focus the first invalid field
+        const firstInvalid = form.querySelector('.input-invalid');
+        if (firstInvalid && typeof firstInvalid.focus === 'function') firstInvalid.focus();
+        return;
+      }
+
+      submit.disabled = true;
+      if (submitLabel) submitLabel.textContent = 'Sending...';
+
+      const payload = Object.assign({}, data, {
+        consent: Boolean(consentEl && consentEl.checked),
+        turnstileToken: tsToken || undefined,
+      });
+
+      try {
+        const res = await fetch('/api/submit-lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const result = await res.json().catch(function () { return { ok: false }; });
+        if (!result.ok) throw new Error(result.error || 'Submit failed');
+
+        form.style.display = 'none';
+        success.style.display = 'block';
+
+        setTimeout(function () {
+          window.location.href = '/thank-you?service=' + encodeURIComponent(String(data.service)) + '&source=' + encodeURIComponent(String(data.source));
+        }, 1200);
+      } catch (err) {
+        submit.disabled = false;
+        if (submitLabel) submitLabel.textContent = 'Try again';
+        // Reset Turnstile so the user can try a fresh challenge
+        if (window.turnstile && tsWidget) {
+          try { window.turnstile.reset(tsWidget); } catch (_) { /* noop */ }
+        }
+        alert('Sorry, something went wrong. Please try again or call us directly on +61 424 985 687 (AU) or +1 925 290 9985 (US).');
+      }
+    });
+  })();
 </script>
