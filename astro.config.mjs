@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://click2revenue.com',
+  site: 'https://www.click2revenue.com',
   output: 'static',
   vite: {
     plugins: [tailwindcss()],

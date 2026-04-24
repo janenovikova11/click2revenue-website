@@ -4,5 +4,6 @@ Allow: /
 Disallow: /thank-you
 Disallow: /privacy-policy
 Disallow: /terms
+Disallow: /api/
 
-Sitemap: https://click2revenue.com/sitemap.xml
+Sitemap: https://www.click2revenue.com/sitemap-index.xml
