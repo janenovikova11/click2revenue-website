@@ -325,9 +325,20 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
       submit.disabled = true;
       if (submitLabel) submitLabel.textContent = 'Sending...';
 
+      // Pull marketing attribution captured on any previous page by BaseLayout's script.
+      // lastTouch  = most recent UTMs (this session), sent as `attribution`.
+      // firstTouch = first-ever UTMs for this browser, sent as `firstAttribution`.
+      let lastTouch = {};
+      let firstTouch = {};
+      try { lastTouch  = JSON.parse(sessionStorage.getItem('c2r_attribution') || '{}'); } catch (_) {}
+      try { firstTouch = JSON.parse(localStorage.getItem('c2r_first_touch') || '{}'); } catch (_) {}
+
       const payload = Object.assign({}, data, {
         consent: Boolean(consentEl && consentEl.checked),
         turnstileToken: tsToken || undefined,
+        attribution: lastTouch,
+        firstAttribution: firstTouch,
+        page_url: window.location.href,
       });
 
       try {

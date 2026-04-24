@@ -99,6 +99,54 @@ const webSiteSchema = {
     <Footer />
     <FloatingCTA />
 
+    <!-- Marketing attribution capture: on every page load, pull UTMs + click IDs
+         from the URL and persist in sessionStorage so the lead form can read
+         them at submit time even if the user navigates between pages first. -->
+    <script is:inline>
+      (function () {
+        try {
+          var params = new URLSearchParams(window.location.search);
+          var utmKeys = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','fbclid','msclkid','li_fat_id'];
+          var existing = {};
+          try { existing = JSON.parse(sessionStorage.getItem('c2r_attribution') || '{}'); } catch (_) {}
+          var firstTouch = {};
+          try { firstTouch = JSON.parse(localStorage.getItem('c2r_first_touch') || '{}'); } catch (_) {}
+
+          var changed = false;
+          var hasFirst = Object.keys(firstTouch).length > 0;
+
+          utmKeys.forEach(function (k) {
+            var v = params.get(k);
+            if (v) {
+              existing[k] = v;           // last-touch: always latest
+              if (!hasFirst) firstTouch[k] = v;  // first-touch: sticky
+              changed = true;
+            }
+          });
+
+          // Referrer + landing URL (first-touch only)
+          if (!existing.referrer && document.referrer && document.referrer.indexOf(window.location.hostname) === -1) {
+            existing.referrer = document.referrer;
+            if (!hasFirst) firstTouch.referrer = document.referrer;
+            changed = true;
+          }
+          if (!existing.landing_url) {
+            existing.landing_url = window.location.href;
+            if (!hasFirst) firstTouch.landing_url = window.location.href;
+            changed = true;
+          }
+
+          if (changed) {
+            sessionStorage.setItem('c2r_attribution', JSON.stringify(existing));
+            if (!hasFirst && Object.keys(firstTouch).length) {
+              firstTouch._captured_at = new Date().toISOString();
+              localStorage.setItem('c2r_first_touch', JSON.stringify(firstTouch));
+            }
+          }
+        } catch (_) { /* sessionStorage disabled: silently skip */ }
+      })();
+    </script>
+
     <script>
       const observer = new IntersectionObserver(
         (entries) => {
