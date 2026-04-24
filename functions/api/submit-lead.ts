@@ -176,6 +176,45 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
 
     const contactSource = deriveContactSource(attribution, formSource);
 
+    // Build custom fields list. GHL's Create Contact API reliably accepts
+    // UTM data via custom fields (the `attributionSource` object is primarily
+    // read-only on GET). So we send UTMs both ways:
+    //   - customFields keyed to utm_source/utm_medium/etc. (definitive)
+    //   - attributionSource object (populated if the API accepts it)
+    const customFields: Array<{ key: string; field_value: string }> = [
+      { key: 'service_interest',  field_value: service },
+      { key: 'areas_of_concern',  field_value: message },      // challenge textarea
+      { key: 'consent_accepted',  field_value: 'true' },
+      { key: 'form_source',       field_value: formSource },
+      { key: 'page_url',          field_value: pageUrl },
+    ];
+
+    const pushAttr = (key: string, value: string | undefined) => {
+      if (value && value.trim()) customFields.push({ key, field_value: value.trim() });
+    };
+
+    // Last-touch UTM custom fields (what Jane filters reports on).
+    if (attribution) {
+      pushAttr('utm_source',   attribution.utm_source);
+      pushAttr('utm_medium',   attribution.utm_medium);
+      pushAttr('utm_campaign', attribution.utm_campaign);
+      pushAttr('utm_content',  attribution.utm_content);
+      pushAttr('utm_term',     attribution.utm_term);
+      pushAttr('gclid',        attribution.gclid);
+      pushAttr('fbclid',       attribution.fbclid);
+      pushAttr('msclkid',      attribution.msclkid);
+      pushAttr('referrer',     attribution.referrer);
+      pushAttr('landing_url',  attribution.landing_url);
+    }
+    // First-touch (how we originally acquired this contact).
+    if (firstAttribution) {
+      pushAttr('first_utm_source',   firstAttribution.utm_source);
+      pushAttr('first_utm_medium',   firstAttribution.utm_medium);
+      pushAttr('first_utm_campaign', firstAttribution.utm_campaign);
+      pushAttr('first_referrer',     firstAttribution.referrer);
+      pushAttr('first_landing_url',  firstAttribution.landing_url);
+    }
+
     const ghlPayload: Record<string, unknown> = {
       locationId,
       firstName,
@@ -183,22 +222,14 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
       email,
       phone,
       source: contactSource,
-      customFields: [
-        { key: 'service_interest',  field_value: service },
-        { key: 'message',           field_value: message },
-        { key: 'consent_accepted',  field_value: 'true' },
-        { key: 'form_source',       field_value: formSource },
-        { key: 'page_url',          field_value: pageUrl },
-      ],
-      // Keep ONE meaningful tag — service bucket. UTM data lives in attribution,
-      // not in tags, so GHL's native attribution reports work correctly.
+      customFields,
       tags: [`service:${service}`, 'web-lead'],
     };
 
-    if (lastTouchGhl)  ghlPayload.attributionSource     = lastTouchGhl;   // most-recent
-    if (firstTouchGhl) ghlPayload.lastAttributionSource = firstTouchGhl;  // NOTE: GHL uses
-    // `attributionSource` for latest and `lastAttributionSource` in some versions for the
-    // original. If your GHL docs show the opposite pairing for your account, swap these.
+    // Attribution objects — include in case the API version accepts them.
+    // If ignored by GHL, the UTM customFields above still carry the data.
+    if (lastTouchGhl)  ghlPayload.attributionSource     = lastTouchGhl;
+    if (firstTouchGhl) ghlPayload.lastAttributionSource = firstTouchGhl;
 
     const ghlRes = await fetch(GHL_ENDPOINT, {
       method: 'POST',
