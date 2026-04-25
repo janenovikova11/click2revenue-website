@@ -161,5 +161,14 @@ const webSiteSchema = {
       );
       document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     </script>
+
+    <!-- GHL External Tracking Script — captures UTMs and page sessions so the
+         native attribution panel on a contact record auto-populates when our
+         /api/submit-lead Function later creates a contact with the same
+         email/phone. Must load before </body> per GHL instructions. -->
+    <script
+      is:inline
+      src="https://link.click2revenue.com/js/external-tracking.js"
+      data-tracking-id="tk_aebbac0c10a64d048fea546eccc48094"></script>
   </body>
 </html>
