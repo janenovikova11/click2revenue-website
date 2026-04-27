@@ -62,7 +62,7 @@ const serviceSchema = {
   "name": `${tag} — AI Marketing & Sales Automation`,
   "description": pageDescription,
   "url": Astro.url.href,
-  "provider": { "@type": "Organization", "name": "Click2Revenue", "url": "https://click2revenue.com" },
+  "provider": { "@type": "Organization", "name": "Click2Revenue", "url": "https://www.click2revenue.com" },
   "areaServed": ["AU", "US"],
   "serviceType": `Marketing for ${tag}`,
 };
@@ -71,8 +71,8 @@ const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home",       "item": "https://click2revenue.com/" },
-    { "@type": "ListItem", "position": 2, "name": "Industries", "item": "https://click2revenue.com/industries" },
+    { "@type": "ListItem", "position": 1, "name": "Home",       "item": "https://www.click2revenue.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Industries", "item": "https://www.click2revenue.com/industries/" },
     { "@type": "ListItem", "position": 3, "name": tag,          "item": Astro.url.href },
   ],
 };
